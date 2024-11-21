@@ -13,7 +13,7 @@ carlist_new_constitucion = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
     country_prestige_mult = 0.05
     state_political_strength_from_wealth_mult = 0.05
-    state_loyalists_from_sol_change_mult = 0.1
+    state_loyalists_from_political_movements_mult = 0.1
 }
 
 carlist_moyano_law = {
@@ -48,8 +48,8 @@ carlist_fueros = {
 
 carlist_fuero_de_navarra = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
-    state_loyalists_from_sol_change_mult = 0.25
-    state_radicals_from_sol_change_mult = -0.25
+    state_loyalists_from_political_movements_mult = 0.25
+    state_radicals_from_political_movements_mult = -0.25
     tax_income_add = -0.1
     interest_group_pol_str_mult = 0.1
 }
