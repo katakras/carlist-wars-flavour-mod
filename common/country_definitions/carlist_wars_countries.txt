@@ -1,0 +1,10 @@
+﻿SPC = {
+    color = hsv360{ 34  97  63 }
+
+    country_type = recognized
+
+    tier = kingdom
+
+    cultures = { spanish }
+    capital = STATE_NAVARRA
+}

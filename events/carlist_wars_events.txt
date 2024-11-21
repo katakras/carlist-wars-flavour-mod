@@ -1,0 +1,477 @@
+﻿namespace = carlist_wars_events
+
+# Initial support for Carlist side
+carlist_wars_events.1 = {
+    type = country_event
+    placement = scope:carlist_state
+
+    title = carlist_wars.1.t
+    desc = carlist_wars.1.d
+    flavor = carlist_wars.1.f
+
+    event_image = {
+        video = "southamerica_christianity"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+    icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+    duration = 1
+
+    trigger = {
+        # Fired by journal entry
+    }
+    immediate = {
+        if = {
+            limit = {
+                any_scope_state = {
+                    state_region = s:STATE_NAVARRA
+                    owner = c:SPA
+                }
+            }
+            s:STATE_NAVARRA = {
+                random_scope_state = {
+                    save_scope_as = carlist_state
+                    set_variable = {
+                        name = carlist_supporter_state
+                    }
+                }
+            }
+        }
+        else = {
+            random_scope_state = {
+                limit = {
+                    is_incorporated = yes
+                }
+                save_scope_as = carlist_state
+                set_variable = {
+                    name = carlist_supporter_state
+                }
+            }
+        }
+    }
+
+    option = {
+        name = carlist_wars.1.a
+        default_option = yes
+        scope:carlist_state = {
+            add_modifier = {
+                name = carlist_state_support
+                days = -1
+            }
+        }
+    }
+}
+
+# First war starts
+carlist_wars_events.2 = {
+    type = country_event
+
+    title = carlist_wars.2.t
+    desc = carlist_wars.2.d
+    flavor = carlist_wars.2.f
+
+    event_image = {
+        video = "southamerica_christianity"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+    icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+    duration = 1
+
+    trigger = {
+    }
+
+    immediate = {
+        scope:carlista_leader_character = { kill_character = yes }
+
+        ROOT = { set_variable = choosing_first_carlist_war_side }
+
+        every_state = {
+            limit = {
+                has_modifier = carlist_state_support
+            }
+            remove_modifier = carlist_state_support
+        }
+
+        every_scope_state = {
+            add_modifier = {
+                name = carlist_war_damages
+                days = -1
+            }
+        }
+
+        random_scope_state = {
+            limit = {
+                has_variable = carlist_supporter_state
+            }
+            save_scope_as = carlist_spain_spawn
+        }
+        create_country = {
+            tag = SPC
+            origin = this
+            state = scope:carlist_spain_spawn
+            on_created = {
+                if = {
+                    limit = {
+                        NOT = {
+                            has_law = law_type:law_autocracy
+                        }
+                    }
+                    activate_law = law_type:law_autocracy
+                }
+            }
+        }
+
+        c:SPC = {
+            save_scope_as = carlist_spain_scope
+            create_character = {
+                template = spc_carlos_de_borbon_template
+            }
+
+            ruler = {
+                add_modifier = {
+                    name = popular_autocrat
+                    months = very_long_modifier_time
+                }
+            }
+
+            set_variable = first_carlist_crisis_over
+            set_variable = choosing_first_carlist_war_side
+        }
+    }
+
+    option = {
+        name = carlist_wars.2.a
+        default_option = yes
+
+        spawn_carlist_spain = yes
+
+        scope:carlist_spain_scope ?= {
+            create_diplomatic_play = {
+                name = annex_war
+                target_country = c:SPA
+                type = dp_carlist_war
+                add_war_goal = { holder = c:SPA target_country = c:SPC type = annex_country }
+            }
+            hidden_effect = {
+                change_infamy = -150
+                remove_variable = choosing_first_carlist_war_side
+            }
+        }
+
+        remove_variable = choosing_first_carlist_war_side
+    }
+
+    option = {
+        name = carlist_wars.2.b
+
+        spawn_carlist_spain = yes
+
+        scope:carlist_spain_scope ?= {
+            create_diplomatic_play = {
+                name = annex_war
+                target_country = c:SPA
+                type = dp_carlist_war
+                add_war_goal = { holder = c:SPA target_country = c:SPC type = annex_country }
+            }
+            hidden_effect = {
+                change_infamy = -150
+                remove_variable = choosing_first_carlist_war_side
+            }
+        }
+        remove_variable = choosing_first_carlist_war_side
+        play_as = scope:carlist_spain_scope
+    }
+}
+
+# New state adds support for Carlos
+carlist_wars_events.3 = {
+    type = country_event
+    placement = scope:carlist_state
+
+    title = carlist_wars.3.t
+    desc = carlist_wars.3.d
+    flavor = carlist_wars.3.f
+
+    event_image = {
+        video = "southamerica_christianity"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+    icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+    duration = 1
+
+    trigger = {
+        # Fired by journal entry
+    }
+    immediate = {
+        if = {
+            limit = {
+                any_scope_state = {
+                    has_variable = carlist_supporter_state
+                }
+            }
+            random_scope_state = {
+                limit = {
+                    has_variable = carlist_supporter_state
+                }
+                random_neighbouring_state = {
+                    limit = {
+                        NOT = { has_variable = carlist_supporter_state }
+                        owner = ROOT
+                    }
+                    save_scope_as = carlist_state
+                    set_variable = carlist_supporter_state
+                }
+            }
+        }
+        else = {
+            random_scope_state = {
+                limit = {
+                    is_incorporated = yes
+                }
+                save_scope_as = carlist_state
+                set_variable = carlist_supporter_state
+            }
+        }
+    }
+
+    option = {
+        name = carlist_wars.3.a
+        default_option = yes
+        scope:carlist_state = {
+            add_modifier = {
+                name = carlist_state_support
+                days = -1
+            }
+        }
+    }
+}
+
+# Reconstruction ends
+carlist_wars_events.4 = {
+    type = country_event
+
+    title = carlist_wars.4.t
+    desc = carlist_wars.4.d
+    flavor = carlist_wars.4.f
+
+    event_image = {
+        video = "southamerica_christianity"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+    icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+    duration = 1
+
+    trigger = {
+        # Fired by journal entry
+    }
+    immediate = {
+
+        every_scope_state = {
+            limit = {
+                has_modifier = carlist_war_damages
+            }
+            remove_modifier = carlist_war_damages
+        }
+    }
+
+    option = {
+        name = carlist_wars.4.a
+        default_option = yes
+    }
+}
+
+# Reconstruction begins
+carlist_wars_events.5 = {
+    type = country_event
+
+    title = carlist_wars.5.t
+    desc = carlist_wars.5.d
+    flavor = carlist_wars.5.f
+
+    event_image = {
+        video = "southamerica_christianity"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+    icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+    duration = 1
+
+    trigger = {
+        # Fired by journal entry
+    }
+
+    immediate = {
+        if = {
+            limit = {
+                THIS = c:SPA
+            }
+            every_scope_state = {
+                limit = {
+                    state_region = {
+                        is_homeland = cu:spanish
+                    }
+                }
+                set_state_type = incorporated
+                if = {
+                    limit = {
+                        has_modifier = recently_conquered_state
+                    }
+                    remove_modifier = recently_conquered_state
+                }
+            }
+        }
+        else_if = {
+            limit = {
+                THIS = c:SPC
+            }
+            every_scope_state = {
+                limit = {
+                    state_region = {
+                        is_homeland = cu:spanish
+                    }
+                }
+                set_state_type = incorporated
+                if = {
+                    limit = {
+                        has_modifier = recently_conquered_state
+                    }
+                    remove_modifier = recently_conquered_state
+                }
+            }
+        }
+    }
+
+    option = {
+        name = carlist_wars.5.a
+        default_option = yes
+        trigger = {
+            exists = c:SPA
+            this = c:SPA
+        }
+
+        add_journal_entry = { type = je_carlist_wars_isabeline_spain_ambitions }
+        add_journal_entry = { type = je_carlist_wars_carlist_revanchism }
+
+    }
+
+    option = {
+        name = carlist_wars.5.a
+        default_option = yes
+        trigger = {
+            exists = c:SPC
+            this = c:SPC
+        }
+
+        add_journal_entry = { type = je_carlist_wars_carlist_spain_ambitions }
+
+        if = {
+            limit = {
+                NOT = { exists = c:SPA }
+            }
+            hidden_effect = { change_tag = SPA }
+        }
+
+        if = {
+            limit = {
+                any_scope_state = {
+                    state_region = s:STATE_TOLEDO
+                    owner = ROOT
+                }
+            }
+            set_capital = STATE_TOLEDO
+        }
+        set_variable = carlist_wars_carlist_winner
+    }
+}
+
+# Following war starts
+carlist_wars_events.6 = {
+    type = country_event
+
+    title = carlist_wars.6.t
+    desc = carlist_wars.6.d
+    flavor = carlist_wars.6.f
+
+    event_image = {
+        video = "southamerica_christianity"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+    icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+    duration = 1
+
+    trigger = {
+        # Fired by journal entry
+    }
+
+    immediate = {
+
+        every_state = {
+            limit = {
+                has_modifier = carlist_state_support
+            }
+            remove_modifier = carlist_state_support
+        }
+
+        random_scope_state = {
+            limit = {
+                has_variable = carlist_supporter_state
+            }
+            save_scope_as = carlist_spain_spawn
+        }
+        create_country = {
+            tag = SPC
+            origin = this
+            state = scope:carlist_spain_spawn
+            on_created = {
+                if = {
+                    limit = {
+                        NOT = {
+                            has_law = law_type:law_autocracy
+                        }
+                    }
+                    activate_law = law_type:law_autocracy
+                }
+            }
+        }
+
+        c:SPC = {
+            save_scope_as = carlist_spain_scope
+            set_variable = first_carlist_crisis_over
+        }
+    }
+
+    option = {
+        name = carlist_wars.6.a
+        default_option = yes
+
+        spawn_carlist_spain = yes
+
+        scope:carlist_spain_scope ?= {
+            create_diplomatic_play = {
+                name = annex_war
+                target_country = c:SPA
+                type = dp_carlist_war
+                add_war_goal = { holder = c:SPA target_country = c:SPC type = annex_country }
+            }
+            hidden_effect = {
+                change_infamy = -150
+            }
+        }
+    }
+}

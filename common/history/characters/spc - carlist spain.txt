@@ -1,0 +1,7 @@
+﻿CHARACTERS = {
+    c:SPC ?= {
+        create_character = {
+            template = spc_carlos_de_borbon_template
+        }
+    }
+}

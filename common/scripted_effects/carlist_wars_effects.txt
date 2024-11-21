@@ -1,0 +1,65 @@
+﻿spawn_carlist_spain = {
+    c:SPC = {
+        create_military_formation = {
+            type = army
+            hq_region = scope:carlist_spain_spawn.region
+
+            combat_unit = {
+                type = unit_type:combat_unit_type_line_infantry
+                state_region = scope:carlist_spain_spawn.state_region
+                count = 10
+            }
+
+            combat_unit = {
+                type = unit_type:combat_unit_type_cannon_artillery
+                state_region = scope:carlist_spain_spawn.state_region
+                count = 5
+            }
+        }
+
+        create_military_formation = {
+            type = army
+            hq_region = scope:carlist_spain_spawn.region
+
+            combat_unit = {
+                type = unit_type:combat_unit_type_line_infantry
+                state_region = scope:carlist_spain_spawn.state_region
+                count = 10
+            }
+        }
+    }
+    every_scope_state = {
+        limit = {
+            has_variable = carlist_supporter_state
+        }
+        save_scope_as = spa_defector_state
+        hidden_effect = {
+            set_state_owner = c:SPC
+            set_state_type = incorporated
+        }
+        remove_variable = carlist_supporter_state
+    }
+
+    hidden_effect = {
+        every_state = {
+            limit = {
+                owner = c:SPC
+            }
+            this.state_region = {
+                add_claim = c:SPA
+            }
+        }
+    }
+
+    hidden_effect = {
+        every_state = {
+            limit = {
+                owner = c:SPC
+            }
+            add_modifier = {
+                name = modifier_taiping_hiring_bonus
+                months = 2
+            }
+        }
+    }
+}

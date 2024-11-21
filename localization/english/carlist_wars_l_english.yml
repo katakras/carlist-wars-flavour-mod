@@ -1,0 +1,140 @@
+﻿l_english:
+  SPC:0 "Spain"
+  SPC_ADJ:0 "Spanish"
+
+  dyn_spc_autocracy_name: "Carlist Spain"
+  dyn_spc_autocracy_name_adj: "Carlist"
+
+  dyn_c_la_plata: "La Plata"
+  dyn_c_la_plata_adj: "Argentinean"
+
+  carlist_state_support: "Carlist supporting state"
+  carlist_war_damages: "Carlist war damages"
+  carlist_new_world_empire_prestige: "Prestigious Colonial Empire"
+  carlist_new_world_loyalty: "Loyalty of the New World"
+
+  je_carlist_wars_tensions:0 "Tensions With the Carlists"
+  je_carlist_wars_tensions_reason:1 "[SCOPE.sCharacter('carlista_leader_character').GetFullName], the son of king Charles IV of Spain is gaining popularity and is a challenge to the reign of [ROOT.GetCountry.GetRuler.GetFullName]. Followers of Carlos are attempting to return to a more traditional monarchy with Carlos at the head of it."
+
+  je_carlist_wars_reconstruction:0 "Nation's Reconstruction"
+  je_carlist_wars_reconstruction_reason:1 "The nation is ravaged from the war. The past is behind us and we need to bring our country back into growth."
+  je_carlist_wars_reconstruction_goal:0 "Increase GDP by 20%"
+
+  je_carlist_wars_carlist_spain_ambitions:0 "Carlist Reforms"
+  je_carlist_wars_carlist_spain_ambitions_reason:1 "The liberals have been defeated and we have a more traditional society. There are a few reforms that we should try to implement to consolidate our power."
+
+  je_carlist_wars_isabeline_spain_ambitions:0 "Isabeline Reforms"
+  je_carlist_wars_isabeline_spain_ambitions_reason:1 "With the liberals being successful in the war against Carlist forces, the time has come to push our agenda to reform Spain into a more progressive country."
+
+  je_carlist_wars_carlist_revanchism:0 "Carlist Threat"
+  je_carlist_wars_carlist_revanchism_reason:1 "Carlist supporters are regrouping after their defeat. We must completely get rid of Carlist support, or regions of our nation may rebel to install another Carlist pretender in the throne."
+
+  je_carlist_wars_colonial_empire: "New World Colonial Empire"
+  je_carlist_wars_colonial_empire_reason: "It has not been that long since most colonies in the New World broke free. Spain is a historically strong global nation, and to maintain that status we should bring the breakaway colonies back into the fold."
+
+  spc_state_defection:0 "[SCOPE.sState('spc_defector_state').GetName] defects to the [SCOPE.sCountry('carlist_spain_scope').GetName]"
+
+  carlist_wars.1.t: "Support for Carlos Begins"
+  carlist_wars.1.d: "[SCOPE.sState('carlist_state').GetName] supports Carlos."
+  carlist_wars.1.f: "The liberal monarchy has started efforts of centralization, which is removing some traditional rights enjoyed by the people of [SCOPE.sState('carlist_state').GetName]. Under the promise of the restoration of traditional rights, influential people are supporting [SCOPE.sCharacter('carlista_leader_character').GetFirstName]' claim."
+  carlist_wars.1.a: "Let's see how this develops."
+
+  carlist_wars.2.t: "The Carlist War Begins"
+  carlist_wars.2.d: "Supporters of [SCOPE.sCharacter('carlista_leader_character').GetFullName] have started a war to restore traditional laws in Spain with Carlos as their king."
+  carlist_wars.2.f: "After months of tensions, the war has begun. Who will we support?"
+  carlist_wars.2.a: "We will support [ROOT.GetCountry.GetRuler.GetFullName]."
+  carlist_wars.2.b: "We will support [SCOPE.sCharacter('carlista_leader_character').GetFullName]."
+
+  carlist_wars.3.t: "Reactionary Support is Increasing"
+  carlist_wars.3.d: "[SCOPE.sState('carlist_state').GetName] supports Carlos."
+  carlist_wars.3.f: "People from [SCOPE.sState('carlist_state').GetName] are following neighbouring regions in supporting the traditionalist pretender."
+  carlist_wars.3.a: "How long before conflict starts?"
+
+  carlist_wars.4.t: "A New Beginning for Spain"
+  carlist_wars.4.d: "After the war, we have finally recovered."
+  carlist_wars.4.f: "The Sun shines again, people are busy at work and the past is behind. The damages from the war are no longer visible."
+  carlist_wars.4.a: "Our nation shines again!"
+
+  carlist_wars.5.t: "End of the First Carlist War"
+  carlist_wars.5.d: ""
+  carlist_wars.5.f: "The nation is destroyed from the first Carlist war. It's time to rebuild our nation."
+  carlist_wars.5.a: "And hopefully the last one!"
+
+  carlist_wars.6.t: "Another Reactionary War Begins"
+  carlist_wars.6.d: "Reactionaries are fighting to go back to a more traditional monarchy once again."
+  carlist_wars.6.f: ""
+  carlist_wars.6.a: "We'll fight the reactionaries!"
+
+  je_first_carlist_crisis_over_tooltip: "Has solved the first Carlist war crisis."
+  je_carlist_threat_over_tooltip: "The Carlist threat is over."
+  je_completed_carlist_crisis: "Roots out Carlist support."
+
+  dp_carlist_war: "Carlist War"
+
+  carlist_wars_constitucion_button: "La Constitucion"
+  carlist_wars_constitucion_button_desc: "It's time to make a compromise and give our parliament more sovereignty. We will codify a new set of laws into a new constitution."
+  not_written_new_constitucion: "Has not written a new Constitucion."
+
+  carlist_wars_moyano_law_button: "Ley Moyano"
+  carlist_wars_moyano_law_button_desc: "We should set up a streamlined structure of primary and secondary school."
+  not_written_moyano_law: "Has not published Ley Moyano."
+
+  carlist_wars_desamortizacion_button: "Desamortización"
+  carlist_wars_desamortizacion_button_desc: "Most of the Church sided with the reactionaries during the war. We should confiscate and sell some of their lands to repay our debts."
+  not_written_desamortizacion: "Has not enacted a Desamortización decree."
+
+  carlist_wars_central_bank_button: "Establish a Central Bank"
+  carlist_wars_central_bank_button_desc: "By establishing a central bank we should promote investment and stabilize the economy."
+  carlist_wars_central_bank_not_established: "Hasn't established a central bank."
+
+  carlist_wars_fueros_button: "Restablish the Fueros"
+  carlist_wars_fueros_button_desc: "The regions of Navarra and the Basque Country gave us key support during our war. We should grant them the rights that were taken by the liberals."
+  not_reestablished_fueros: "Hasn't restablished the Fueros."
+
+  carlist_wars_rebuild_colonial_empire_button: "Rebuild Colonial Empire"
+  carlist_wars_rebuild_colonial_empire_button_desc: "Let's unite the Hispanosphere."
+  carlist_removes_claims_in_americas: "Removes claims from the New World."
+
+  carlist_wars_bring_scholars_button: "Invite Foreign Scholars"
+  carlist_wars_bring_scholars_button_desc: "Progress has a price, and that price is measured in gold. We can pay foreign scholars so that they can conduct their research here."
+
+  carlist_wars_reform_new_spain_button: "Reform New Spain"
+  carlist_wars_reform_new_spain_button_desc: "Let's redraw the borders of New Spain."
+  carlist_will_give_states_new_spain: "Will cede states to New Spain and New Spain will get new primary cultures."
+  carlist_historical_new_spain_claim: "Has historical New Spain states."
+  carlist_is_not_new_spain: "Is not New Spain."
+  carlist_new_spain_exists: "New Spain/Mexico exists."
+
+  carlist_wars_reform_new_granada_button: "Reform New Granada"
+  carlist_wars_reform_new_granada_button_desc: "Let's redraw the borders of New Granada"
+  carlist_will_give_states_new_granada: "Will cede states to New Granada and New Granada will get new primary cultures."
+  carlist_historical_new_granada_claim: "Has historical New Granada states."
+  carlist_is_not_new_granada: "Is not New Granada."
+  carlist_new_granada_exists: "New Granada/Colombia exists."
+
+  carlist_wars_reform_peru_button: "Reform Peru"
+  carlist_wars_reform_peru_button_desc: "Let's redraw the borders of Peru."
+  carlist_will_give_states_peru: "Will cede states to Peru and Peru will get new primary cultures."
+  carlist_historical_peru_claim: "Has historical Peru states."
+  carlist_is_not_peru: "Is not Peru."
+  carlist_peru_exists: "Peru exists."
+
+  carlist_wars_reform_la_plata_button: "Reform La Plata"
+  carlist_wars_reform_la_plata_button_desc: "Let's redraw the borders of La Plata."
+  carlist_will_give_states_la_plata: "Will cede states to La Plata and La Plata will get new primary cultures."
+  carlist_historical_la_plata_claim: "Has historical La Plata states."
+  carlist_is_not_la_plata: "Is not La Plata."
+  carlist_la_plata_exists: "La Plata/Argentina exists."
+
+  carlist_new_constitucion: "La Constitucion"
+  carlist_moyano_law: "Ley Moyano"
+  carlist_desamortizacion: "Desamortización"
+  carlist_central_bank: "Central Bank"
+  carlist_central_bank_headquarters: "Central Bank Headquarters"
+  carlist_fueros: "Los Fueros"
+  carlist_fuero_de_navarra: "Fuero de Navarra"
+  carlist_foreign_scholars: "Foreign Scholars"
+  carlist_foreign_scholars_cost: "Paying Foreign Scholars"
+  carlist_foreign_scholars_payment: "Receiving Foreign Scholars Payment"
+
+  higher_literacy_rate_than: "Has a higher literacy rate than [SCOPE.GetRootScope.GetCountry.GetName]."

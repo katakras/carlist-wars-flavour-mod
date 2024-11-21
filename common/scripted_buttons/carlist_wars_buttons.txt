@@ -1,0 +1,755 @@
+﻿carlist_wars_constitucion_button = {
+    name = "carlist_wars_constitucion_button"
+    desc = "carlist_wars_constitucion_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        OR = {
+            has_law = law_type:law_landed_voting
+            has_law = law_type:law_wealth_voting
+            has_law = law_type:law_census_voting
+            has_law = law_type:law_universal_suffrage
+        }
+        custom_tooltip = {
+            text = not_written_new_constitucion
+            NOT = { has_variable = written_new_constitucion_flag }
+        }
+    }
+
+    effect = {
+        hidden_effect = { set_variable = written_new_constitucion_flag }
+        add_modifier = {
+            name = carlist_new_constitucion
+            months = very_long_modifier_time
+            is_decaying = yes
+        }
+    }
+}
+
+carlist_wars_moyano_law_button = {
+    name = "carlist_wars_moyano_law_button"
+    desc = "carlist_wars_moyano_law_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        OR = {
+            has_law = law_type:law_public_schools
+            has_law = law_type:law_private_schools
+        }
+        OR = {
+            has_law = law_type:law_compulsory_primary_school
+        }
+        custom_tooltip = {
+            text = not_written_moyano_law
+            NOT = { has_variable = written_moyano_law_flag }
+        }
+    }
+
+    effect = {
+        hidden_effect = { set_variable = written_moyano_law_flag }
+        add_modifier = {
+            name = carlist_moyano_law
+            months = very_long_modifier_time
+            is_decaying = yes
+        }
+    }
+}
+
+
+carlist_wars_desamortizacion_button = {
+    name = "carlist_wars_desamortizacion_button"
+    desc = "carlist_wars_desamortizacion_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        scaled_debt > 0
+        custom_tooltip = {
+            text = not_written_desamortizacion
+            NOT = { has_variable = written_desamortizacion_flag }
+        }
+    }
+
+    effect = {
+        add_treasury = {
+            value = gdp
+            multiply = 0.05
+        }
+        hidden_effect = { set_variable = written_desamortizacion_flag }
+        add_modifier = {
+            name = carlist_desamortizacion
+            months = long_modifier_time
+            is_decaying = yes
+        }
+    }
+}
+
+carlist_wars_central_bank_button = {
+    name = "carlist_wars_central_bank_button"
+    desc = "carlist_wars_central_bank_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        OR = {
+            has_law = law_type:law_interventionism
+            has_law = law_type:law_laissez_faire
+            has_law = law_type:law_command_economy
+        }
+        country_rank >= rank_value:great_power
+        custom_tooltip = {
+            text = carlist_wars_central_bank_not_established
+            NOT = { has_variable = established_central_bank_flag }
+        }
+    }
+
+    effect = {
+        hidden_effect = { set_variable = established_central_bank_flag }
+        add_modifier = {
+            name = carlist_central_bank
+            months = long_modifier_time
+            is_decaying = yes
+        }
+
+        capital = {
+            add_modifier = {
+                name = carlist_central_bank_headquarters
+                months = long_modifier_time
+                is_decaying = yes
+            }
+        }
+
+    }
+}
+
+carlist_wars_fueros_button = {
+    name = "carlist_wars_fueros_button"
+    desc = "carlist_wars_fueros_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        any_scope_state = {
+            state_region = s:STATE_NAVARRA
+            owner = ROOT
+        }
+        custom_tooltip = {
+            text = not_reestablished_fueros
+            NOT = { has_variable = fueros_reestablished_flag }
+        }
+    }
+
+    effect = {
+        hidden_effect = { set_variable = fueros_reestablished_flag }
+
+        add_modifier = {
+            name = carlist_fueros
+            months = very_long_modifier_time
+            is_decaying = yes
+        }
+
+        every_scope_state = {
+            limit = {
+                state_region = s:STATE_NAVARRA
+                owner = ROOT
+            }
+            add_modifier = {
+                name = carlist_fuero_de_navarra
+                months = very_long_modifier_time
+                is_decaying = yes
+            }
+        }
+    }
+}
+
+carlist_wars_rebuild_colonial_empire_button = {
+    name = "carlist_wars_rebuild_colonial_empire_button"
+    desc = "carlist_wars_rebuild_colonial_empire_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        NOT = { has_journal_entry = je_carlist_wars_colonial_empire }
+    }
+
+    effect = {
+
+        add_journal_entry = { type = je_carlist_wars_colonial_empire }
+        change_infamy = 10
+
+    }
+}
+
+carlist_wars_bring_scholars_button = {
+    name = "carlist_wars_bring_scholars_button"
+    desc = "carlist_wars_bring_scholars_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        gold_reserves > 0
+        any_country = {
+            NOT = { this = ROOT }
+            country_rank >= rank_value:great_power
+            custom_tooltip = {
+                text = higher_literacy_rate_than
+                literacy_rate >= ROOT.literacy_rate
+            }
+            relations:root >= relations_threshold:cordial
+        }
+        NOT = { has_modifier = carlist_foreign_scholars }
+    }
+
+    effect = {
+        add_modifier = {
+            name = carlist_foreign_scholars
+            years = 5
+        }
+        add_modifier = {
+            name = carlist_foreign_scholars_cost
+            multiplier = ROOT.gdp
+            years = 5
+        }
+        random_country = {
+            limit = {
+                NOT = { this = ROOT }
+                country_rank >= rank_value:great_power
+                literacy_rate >= ROOT.literacy_rate
+                relations:root >= relations_threshold:cordial
+            }
+            add_modifier = {
+                name = carlist_foreign_scholars_payment
+                multiplier = ROOT.gdp
+                years = 5
+            }
+        }
+    }
+}
+
+carlist_wars_reform_new_spain_button = {
+    name = "carlist_wars_reform_new_spain_button"
+    desc = "carlist_wars_reform_new_spain_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        custom_tooltip = {
+            text = carlist_new_spain_exists
+            exists = c:MEX
+        }
+        c:MEX ?= {
+            is_subject_of = ROOT
+        }
+
+        OR = {
+            custom_tooltip = {
+                text = carlist_historical_new_spain_claim
+                any_scope_state = {
+                    state_region = {
+                        OR = {
+                            is_homeland = cu:caribeno
+                            is_homeland = cu:central_american
+                            is_homeland = cu:mexican
+                            is_homeland = cu:pueblo
+                            is_homeland = cu:navajo
+                            is_homeland = cu:apache
+                            is_homeland = cu:paiute
+                            is_homeland = cu:hokan
+                        }
+                    }
+                }
+            }
+
+            any_subject_or_below = {
+                custom_tooltip = {
+                    text = carlist_is_not_new_spain
+                    NOT = {
+                        c:MEX ?= this
+                    }
+                }
+
+                custom_tooltip = {
+                    text = carlist_historical_new_spain_claim
+                    any_scope_state = {
+                        state_region = {
+                            OR = {
+                                is_homeland = cu:caribeno
+                                is_homeland = cu:central_american
+                                is_homeland = cu:mexican
+                                is_homeland = cu:pueblo
+                                is_homeland = cu:navajo
+                                is_homeland = cu:apache
+                                is_homeland = cu:paiute
+                                is_homeland = cu:hokan
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    effect = {
+        custom_tooltip = {
+            text = carlist_will_give_states_new_spain
+            hidden_effect = {
+                if = {
+                    limit = {
+                        exists = c:MEX
+                    }
+
+                    every_country = {
+                        limit = {
+                            NOT = { c:MEX ?= this }
+                            OR = {
+                                this = ROOT
+                                is_subject_of = ROOT
+                            }
+
+                        }
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    OR = {
+                                        is_homeland = cu:mexican
+                                        is_homeland = cu:pueblo
+                                        is_homeland = cu:navajo
+                                        is_homeland = cu:apache
+                                        is_homeland = cu:paiute
+                                        is_homeland = cu:hokan
+                                    }
+                                }
+                            }
+                            set_state_owner = c:MEX
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:caribeno
+                                }
+                            }
+                            set_state_owner = c:MEX
+                            c:MEX ?= {
+                                add_primary_culture = cu:caribeno
+                            }
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:central_american
+                                }
+                            }
+                            set_state_owner = c:MEX
+                            c:MEX ?= {
+                                add_primary_culture = cu:central_american
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if = {
+            limit = {
+                exists = c:MEX
+            }
+            c:MEX ?= {
+                add_modifier = {
+                    name = carlist_new_world_loyalty
+                    years = 10
+                }
+                add_liberty_desire = -25
+            }
+        }
+    }
+}
+
+carlist_wars_reform_new_granada_button = {
+    name = "carlist_wars_reform_new_granada_button"
+    desc = "carlist_wars_reform_new_granada_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        custom_tooltip = {
+            text = carlist_new_granada_exists
+            exists = c:CLM
+        }
+        c:CLM ?= {
+            is_subject_of = ROOT
+        }
+
+        custom_tooltip = {
+            text = carlist_historical_new_granada_claim
+            any_scope_state = {
+                state_region = {
+                    OR = {
+                        is_homeland = cu:colombian
+                        is_homeland = cu:venezuelan
+                        is_homeland = cu:ecuadorian
+                    }
+                }
+            }
+        }
+
+        any_subject_or_below = {
+            custom_tooltip = {
+                text = carlist_is_not_new_granada
+                NOT = { c:CLM ?= this }
+            }
+
+            custom_tooltip = {
+                text = carlist_historical_new_granada_claim
+                any_scope_state = {
+                    state_region = {
+                        OR = {
+                            is_homeland = cu:colombian
+                            is_homeland = cu:venezuelan
+                            is_homeland = cu:ecuadorian
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    effect = {
+        custom_tooltip = {
+            text = carlist_will_give_states_new_granada
+            hidden_effect = {
+                if = {
+                    limit = {
+                        exists = c:CLM
+                    }
+                    every_country = {
+                        limit = {
+                            NOT = { c:CLM ?= this }
+                            OR = {
+                                this = ROOT
+                                is_subject_of = ROOT
+                            }
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:colombian
+                                }
+                            }
+                            set_state_owner = c:CLM
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:ecuadorian
+                                }
+                            }
+                            set_state_owner = c:CLM
+                            c:CLM ?= {
+                                add_primary_culture = cu:ecuadorian
+                            }
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:venezuelan
+                                }
+                            }
+                            set_state_owner = c:CLM
+                            c:CLM ?= {
+                                add_primary_culture = cu:venezuelan
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if = {
+            limit = {
+                exists = c:CLM
+            }
+            c:CLM ?= {
+                add_modifier = {
+                    name = carlist_new_world_loyalty
+                    years = 10
+                }
+                add_liberty_desire = -25
+            }
+        }
+    }
+}
+
+carlist_wars_reform_peru_button = {
+    name = "carlist_wars_reform_peru_button"
+    desc = "carlist_wars_reform_peru_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        custom_tooltip = {
+            text = carlist_peru_exists
+            exists = c:PEU
+        }
+        c:PEU ?= {
+            is_subject_of = ROOT
+        }
+
+        OR = {
+            custom_tooltip = {
+                text = carlist_historical_peru_claim
+                any_scope_state = {
+                    state_region = {
+                        OR = {
+                            is_homeland = cu:peruvian
+                            is_homeland = cu:south_andean
+                            is_homeland = cu:north_andean
+                            is_homeland = cu:bolivian
+                        }
+                    }
+                }
+            }
+
+            any_subject_or_below = {
+                custom_tooltip = {
+                    text = carlist_is_not_peru
+                    NOT = {
+                        c:PEU ?= this
+                    }
+                }
+
+                custom_tooltip = {
+                    text = carlist_historical_peru_claim
+                    any_scope_state = {
+                        state_region = {
+                            OR = {
+                                is_homeland = cu:peruvian
+                                is_homeland = cu:south_andean
+                                is_homeland = cu:north_andean
+                                is_homeland = cu:bolivian
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    effect = {
+        custom_tooltip = {
+            text = carlist_will_give_states_peru
+            hidden_effect = {
+                if = {
+                    limit = {
+                        exists = c:PEU
+                    }
+                    every_country = {
+                        limit = {
+                            NOT = { c:PEU ?= this }
+                            OR = {
+                                this = ROOT
+                                is_subject_of = ROOT
+                            }
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:peruvian
+                                }
+                            }
+                            set_state_owner = c:PEU
+                            c:PEU ?= {
+                                add_primary_culture = cu:peruvian
+                            }
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:south_andean
+                                }
+                            }
+                            set_state_owner = c:PEU
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:north_andean
+                                }
+                            }
+                            set_state_owner = c:PEU
+                            c:PEU ?= {
+                                add_primary_culture = cu:north_andean
+                            }
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:bolivian
+                                }
+                            }
+                            set_state_owner = c:PEU
+                            c:PEU ?= {
+                                add_primary_culture = cu:bolivian
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if = {
+            limit = {
+                exists = c:PEU
+            }
+            c:PEU ?= {
+                add_modifier = {
+                    name = carlist_new_world_loyalty
+                    years = 10
+                }
+                add_liberty_desire = -25
+            }
+        }
+    }
+}
+
+carlist_wars_reform_la_plata_button = {
+    name = "carlist_wars_reform_la_plata_button"
+    desc = "carlist_wars_reform_la_plata_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        custom_tooltip = {
+            text = carlist_la_plata_exists
+            exists = c:ARG
+        }
+        c:ARG ?= {
+            is_subject_of = ROOT
+        }
+
+        custom_tooltip = {
+            text = carlist_historical_la_plata_claim
+            any_scope_state = {
+                state_region = {
+                    OR = {
+                        is_homeland = cu:argentine
+                        is_homeland = cu:chilean
+                        is_homeland = cu:uruguayan
+                        is_homeland = cu:paraguayan
+                    }
+                }
+            }
+        }
+
+        any_subject_or_below = {
+            custom_tooltip = {
+                text = carlist_is_not_la_plata
+                NOT = { c:ARG ?= this }
+            }
+
+            custom_tooltip = {
+                text = carlist_historical_la_plata_claim
+                any_scope_state = {
+                    state_region = {
+                        OR = {
+                            is_homeland = cu:argentine
+                            is_homeland = cu:chilean
+                            is_homeland = cu:uruguayan
+                            is_homeland = cu:paraguayan
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    effect = {
+        custom_tooltip = {
+            text = carlist_will_give_states_la_plata
+            hidden_effect = {
+                if = {
+                    limit = {
+                        exists = c:ARG
+                    }
+                    every_country = {
+                        limit = {
+                            NOT = { c:ARG ?= this }
+                            OR = {
+                                this = ROOT
+                                is_subject_of = ROOT
+                            }
+
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:argentine
+                                }
+                            }
+                            set_state_owner = c:ARG
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:chilean
+                                }
+                            }
+                            set_state_owner = c:ARG
+                            c:ARG ?= {
+                                add_primary_culture = cu:chilean
+                            }
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:uruguayan
+                                }
+                            }
+                            set_state_owner = c:ARG
+                            c:ARG ?= {
+                                add_primary_culture = cu:uruguayan
+                            }
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:paraguayan
+                                }
+                            }
+                            set_state_owner = c:ARG
+                            c:ARG ?= {
+                                add_primary_culture = cu:paraguayan
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if = {
+            limit = {
+                exists = c:ARG
+            }
+            c:ARG ?= {
+                add_modifier = {
+                    name = carlist_new_world_loyalty
+                    years = 10
+                }
+                add_liberty_desire = -25
+            }
+        }
+    }
+}

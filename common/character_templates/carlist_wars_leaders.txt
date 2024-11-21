@@ -1,0 +1,16 @@
+﻿# Carlist Spain - SPC
+spc_carlos_de_borbon_template = {
+    first_name = "Carlos"
+    last_name = "de_Borbon"
+    historical = yes
+    ruler = yes
+    female = no
+    birth_date = 1788.03.29
+    interest_group = ig_landowners
+    ideology = ideology_traditionalist
+    ig_leader = yes
+    dna = dna_carlist_wars_carlos_borbon
+    traits = {
+        imperious
+    }
+}
