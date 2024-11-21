@@ -1,6 +1,6 @@
 ﻿carlist_state_support = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_negative.dds
-    state_radicals_from_sol_change_mult = 0.25
+    state_radicals_from_political_movements_mult = 0.25
 }
 
 carlist_war_damages = {
