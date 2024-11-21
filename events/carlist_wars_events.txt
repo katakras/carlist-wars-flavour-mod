@@ -97,13 +97,6 @@ carlist_wars_events.2 = {
             remove_modifier = carlist_state_support
         }
 
-        every_scope_state = {
-            add_modifier = {
-                name = carlist_war_damages
-                days = -1
-            }
-        }
-
         random_scope_state = {
             limit = {
                 has_variable = carlist_supporter_state

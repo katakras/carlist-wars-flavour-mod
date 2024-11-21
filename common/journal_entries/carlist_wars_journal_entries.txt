@@ -84,6 +84,13 @@ je_carlist_wars_reconstruction = {
 
     immediate = {
         trigger_event = carlist_wars_events.5
+
+        every_scope_state = {
+            add_modifier = {
+                name = carlist_war_damages
+                days = -1
+            }
+        }
     }
 
     complete = {
