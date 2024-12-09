@@ -1,0 +1,13 @@
+﻿{
+    "name" : "Carlist Wars Flavour Mod",
+    "id" : "3367728289",
+    "version" : "1.0.2",
+    "supported_game_version" : "1.8.x",
+    "short_description" : "",
+    "thumbnail" : "thumbnail.png",
+    "tags" : [],
+    "relationships" : [],
+    "game_custom_data" : {
+      "multiplayer_synchronized" : true
+    }
+  }
