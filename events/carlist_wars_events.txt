@@ -1,4 +1,4 @@
-namespace = carlist_wars_events
+﻿namespace = carlist_wars_events
 
 # Initial support for Carlist side
 carlist_wars_events.1 = {
@@ -281,6 +281,15 @@ carlist_wars_events.4 = {
     option = {
         name = carlist_wars.4.a
         default_option = yes
+        every_scope_state = {
+            limit = {
+                is_incorporated = yes
+            }
+            add_modifier = {
+                name = efficient_bureaucracy
+                months = short_modifier_time
+            }
+        }
     }
 }
 
