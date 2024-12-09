@@ -383,33 +383,37 @@ carlist_wars_reform_new_granada_button = {
             is_subject_of = ROOT
         }
 
-        custom_tooltip = {
-            text = carlist_historical_new_granada_claim
-            any_scope_state = {
-                state_region = {
-                    OR = {
-                        is_homeland = cu:colombian
-                        is_homeland = cu:venezuelan
-                        is_homeland = cu:ecuadorian
-                    }
-                }
-            }
-        }
-
-        any_subject_or_below = {
-            custom_tooltip = {
-                text = carlist_is_not_new_granada
-                NOT = { c:CLM ?= this }
-            }
-
+        OR = {
             custom_tooltip = {
                 text = carlist_historical_new_granada_claim
                 any_scope_state = {
                     state_region = {
                         OR = {
+                            is_homeland = cu:guajiro
                             is_homeland = cu:colombian
                             is_homeland = cu:venezuelan
                             is_homeland = cu:ecuadorian
+                        }
+                    }
+                }
+            }
+
+            any_subject_or_below = {
+                custom_tooltip = {
+                    text = carlist_is_not_new_granada
+                    NOT = { c:CLM ?= this }
+                }
+
+                custom_tooltip = {
+                    text = carlist_historical_new_granada_claim
+                    any_scope_state = {
+                        state_region = {
+                            OR = {
+                                is_homeland = cu:guajiro
+                                is_homeland = cu:colombian
+                                is_homeland = cu:venezuelan
+                                is_homeland = cu:ecuadorian
+                            }
                         }
                     }
                 }
@@ -437,7 +441,10 @@ carlist_wars_reform_new_granada_button = {
                         every_scope_state = {
                             limit = {
                                 state_region = {
-                                    is_homeland = cu:colombian
+                                    OR = {
+                                        is_homeland = cu:guajiro
+                                        is_homeland = cu:colombian
+                                    }
                                 }
                             }
                             set_state_owner = c:CLM
@@ -636,26 +643,7 @@ carlist_wars_reform_la_plata_button = {
             is_subject_of = ROOT
         }
 
-        custom_tooltip = {
-            text = carlist_historical_la_plata_claim
-            any_scope_state = {
-                state_region = {
-                    OR = {
-                        is_homeland = cu:argentine
-                        is_homeland = cu:chilean
-                        is_homeland = cu:uruguayan
-                        is_homeland = cu:paraguayan
-                    }
-                }
-            }
-        }
-
-        any_subject_or_below = {
-            custom_tooltip = {
-                text = carlist_is_not_la_plata
-                NOT = { c:ARG ?= this }
-            }
-
+        OR = {
             custom_tooltip = {
                 text = carlist_historical_la_plata_claim
                 any_scope_state = {
@@ -665,6 +653,27 @@ carlist_wars_reform_la_plata_button = {
                             is_homeland = cu:chilean
                             is_homeland = cu:uruguayan
                             is_homeland = cu:paraguayan
+                        }
+                    }
+                }
+            }
+
+            any_subject_or_below = {
+                custom_tooltip = {
+                    text = carlist_is_not_la_plata
+                    NOT = { c:ARG ?= this }
+                }
+
+                custom_tooltip = {
+                    text = carlist_historical_la_plata_claim
+                    any_scope_state = {
+                        state_region = {
+                            OR = {
+                                is_homeland = cu:argentine
+                                is_homeland = cu:chilean
+                                is_homeland = cu:uruguayan
+                                is_homeland = cu:paraguayan
+                            }
                         }
                     }
                 }
