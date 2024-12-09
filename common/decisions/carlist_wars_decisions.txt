@@ -1,0 +1,25 @@
+carlist_wars_rename_to_spain = {
+	is_shown = {
+		exists = c:SPA
+		this = c:SPA
+        has_variable = carlist_wars_carlist_name
+	}
+
+	possible = {
+		this = c:SPA
+		hidden_trigger = {
+			has_variable = carlist_wars_carlist_name
+		}
+	}
+	
+	when_taken = {
+        custom_tooltip = {
+            text = carlist_wars_rename_to_spain_effect
+            remove_variable = carlist_wars_carlist_name
+	    }
+    }
+
+	ai_chance = {
+		base = 0		
+	}
+}

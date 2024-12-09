@@ -25,7 +25,7 @@ SPA = {
         trigger = {
             exists = scope:actor
             scope:actor ?= {
-                has_variable = carlist_wars_carlist_winner
+                has_variable = carlist_wars_carlist_name
                 has_law = law_type:law_monarchy
                 has_law = law_type:law_autocracy
             }

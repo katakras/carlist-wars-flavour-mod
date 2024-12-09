@@ -141,3 +141,7 @@
   carlist_foreign_scholars_payment: "Wypłaty dla zagranicznych uczonych"
 
   higher_literacy_rate_than: "Ma wyższy wskaźnik alfabetyzacji niż [SCOPE.GetRootScope.GetCountry.GetName]."
+
+  carlist_wars_rename_to_spain: "Rename Nation to Spain"
+  carlist_wars_rename_to_spain_desc: "After our victory, we should legitimize our new government by adopting the name our country always had."
+  carlist_wars_rename_to_spain_effect: "Rename our country to Spain."

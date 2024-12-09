@@ -1,4 +1,4 @@
-﻿namespace = carlist_wars_events
+namespace = carlist_wars_events
 
 # Initial support for Carlist side
 carlist_wars_events.1 = {
@@ -386,7 +386,7 @@ carlist_wars_events.5 = {
             }
             set_capital = STATE_TOLEDO
         }
-        set_variable = carlist_wars_carlist_winner
+        set_variable = carlist_wars_carlist_name
     }
 }
 
