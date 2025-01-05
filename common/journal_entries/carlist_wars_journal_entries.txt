@@ -55,11 +55,444 @@
         trigger_event = {
             id = carlist_wars_events.2
         }
-        set_variable = first_carlist_crisis_over
+        set_variable = { name = first_carlist_crisis_over }
     }
 
     weight = 100
     should_be_pinned_by_default = yes
+}
+
+je_carlist_wars_new_world_colonies = {
+    icon = "gfx/interface/icons/invention_icons/nationalism.dds"
+
+    group = je_group_historical_content
+
+    possible = {
+    }
+
+    immediate = {
+        hidden_effect= {
+            if = {
+                limit = {
+                    NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_new_spain }
+                }
+                add_journal_entry = { type = je_carlist_wars_new_world_colonies_new_spain }
+            }
+            if = {
+                limit = {
+                    NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_new_granada }
+                }
+                add_journal_entry = { type = je_carlist_wars_new_world_colonies_new_granada }
+            }
+            if = {
+                limit = {
+                    NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_peru }
+                }
+                add_journal_entry = { type = je_carlist_wars_new_world_colonies_peru }
+            }
+            if = {
+                limit = {
+                    NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_la_plata }
+                }
+                add_journal_entry = { type = je_carlist_wars_new_world_colonies_la_plata }
+            }
+        }
+    }
+
+    on_monthly_pulse = {
+    }
+
+    complete = {
+       NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_new_spain }
+       NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_new_granada }
+       NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_peru }
+       NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_la_plata }
+    }
+
+    fail = {
+       
+    }
+
+    on_fail = {
+    }
+
+    transferable = yes
+    weight = 100
+    should_be_pinned_by_default = yes
+}
+
+je_carlist_wars_new_world_colonies_new_spain = {
+    icon = "gfx/interface/icons/invention_icons/nationalism.dds"
+
+    group = je_group_historical_content
+
+    scripted_progress_bar = carlist_new_spain_old_claim_progress_bar
+
+    scripted_button = carlist_wars_recognise_new_spain_button
+    scripted_button = carlist_wars_reform_new_spain_button
+
+    immediate = {
+        
+        c:MEX = {
+            save_scope_as = new_spain_scope
+        }
+        
+        hidden_effect= {
+            # create old colonies regions
+            # new spain
+            if = {
+                # don't set things twice
+                limit = {
+                    any_state_region = {
+                        has_variable = carlist_new_spain_old_claim
+                    }
+                }
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_new_spain_old_claim
+                    }
+                    add_claim = c:SPA
+                }
+            }
+            else = {
+                every_state_region = {
+                    limit = {
+                        AND = {
+                            any_scope_state = {
+                                    OR = {
+                                        owner = c:MEX
+                                        owner = c:UCA
+                                    }  
+                            }
+                            # avoid states being colonized to avoid weird stuff with the USA
+                            NOT = {
+                                any_scope_state = {
+                                    owner = { is_country_type = decentralized }
+                                }
+                            }
+                        }
+                    }
+                    set_variable = {
+                        name = carlist_new_spain_old_claim
+                    }
+                    add_claim = c:SPA
+                }
+
+                s:STATE_NEVADA = {
+                    set_variable = {
+                        name = carlist_new_spain_old_claim
+                    }
+                }
+
+                s:STATE_UTAH = {
+                    set_variable = {
+                        name = carlist_new_spain_old_claim
+                    }
+                }
+
+                s:STATE_NEW_MEXICO = {
+                    set_variable = {
+                        name = carlist_new_spain_old_claim
+                    }
+                }
+
+                s:STATE_TEXAS = {
+                    set_variable = {
+                        name = carlist_new_spain_old_claim
+                    }
+                }
+            }
+
+        set_variable = {
+            name = infamy_change
+            value = 0
+        }
+
+        }
+
+    }
+
+    on_monthly_pulse = {
+        effect = {
+            if = {
+                limit = {
+                    je:je_carlist_wars_new_world_colonies_new_spain ?= {
+                        "scripted_bar_progress(carlist_new_spain_old_claim_progress_bar)" < 25
+                    }
+                }
+                set_variable = {
+                    name = infamy_change
+                    value = {
+                        add = 0.5
+                        if = {
+                            limit = {
+                                je:je_carlist_wars_new_world_colonies_new_spain ?= {
+                                    "scripted_bar_progress(carlist_new_spain_old_claim_progress_bar)" < 15
+                                }
+                            }
+                            add = 0.5
+                        }
+                        if = {
+                            limit = {
+                                je:je_carlist_wars_new_world_colonies_new_spain ?= {
+                                    "scripted_bar_progress(carlist_new_spain_old_claim_progress_bar)" < 5
+                                }
+                            }
+                            add = 1.0
+                        }
+                    }
+                }
+                change_infamy = var:infamy_change
+            }
+        }
+    }
+
+    complete = {
+    }
+
+    fail = {
+        custom_tooltip = {
+            text = je_carlist_zero_claim_strength
+            je:je_carlist_wars_new_world_colonies_new_spain ?= {
+                "scripted_bar_progress(carlist_new_spain_old_claim_progress_bar)" = 0.0
+            }
+        }
+    }
+
+    on_fail = {
+        custom_tooltip = {
+            text = carlist_wars_loses_new_spain_claims
+            hidden_effect = {
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_new_spain_old_claim
+                    }
+                    remove_claim = c:SPA
+                }
+            }
+        }
+    }
+
+    transferable = yes
+    weight = 90
+    should_be_pinned_by_default = no
+}
+
+je_carlist_wars_new_world_colonies_new_granada = {
+    icon = "gfx/interface/icons/invention_icons/nationalism.dds"
+
+    group = je_group_historical_content
+    scripted_progress_bar = carlist_new_granada_old_claim_progress_bar
+
+    possible = {
+    }
+
+    immediate = {
+        hidden_effect= {
+            # create old colonies regions
+            # new granada
+            if = {
+                # don't set things twice
+                limit = {
+                    any_state_region = {
+                        has_variable = carlist_new_granada_old_claim
+                    }
+                }
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_new_granada_old_claim
+                    }
+                    add_claim = c:SPA
+                }
+            }
+            else = {
+                every_state_region = {
+                    limit = {
+                            any_scope_state = {
+                                    OR = {
+                                    owner = c:CLM
+                                    owner = c:VNZ
+                                    owner = c:ECU
+                                }
+                            }
+                    }
+                    set_variable = {
+                        name = carlist_new_granada_old_claim
+                    }
+                    add_claim = c:SPA
+                }
+            }
+        }
+    }
+
+    on_monthly_pulse = {
+        random_events = {
+            3 = 0
+            1 = carlist_wars_events.3
+        }
+    }
+
+    complete = {
+       
+    }
+
+    fail = {
+       
+    }
+
+    on_fail = {
+    }
+
+    transferable = yes
+    weight = 90
+    should_be_pinned_by_default = no
+}
+
+je_carlist_wars_new_world_colonies_peru = {
+    icon = "gfx/interface/icons/invention_icons/nationalism.dds"
+
+    group = je_group_historical_content
+
+    scripted_progress_bar = carlist_peru_old_claim_progress_bar
+
+    possible = {
+    }
+
+    immediate = {
+        hidden_effect= {
+            # create old colonies regions
+            # peru
+            if = {
+                # don't set things twice
+                limit = {
+                    any_state_region = {
+                        has_variable = carlist_peru_old_claim
+                    }
+                }
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_peru_old_claim
+                    }
+                    add_claim = c:SPA
+                }
+            }
+            else = {
+                every_state_region = {
+                    limit = {
+                        NOT = {
+                            has_variable = carlist_new_granada_old_claim
+                        } 
+                        any_scope_state = {
+                            OR = {
+                                owner = c:NPU
+                                owner = c:BOL
+                                owner = c:IQU
+                                owner = c:SPU
+                            }
+                        }
+                    }
+                    set_variable = {
+                        name = carlist_peru_old_claim
+                    }
+                    add_claim = c:SPA
+                }
+            }
+        }
+    }
+
+    on_monthly_pulse = {
+    }
+
+    complete = {
+       
+    }
+
+    fail = {
+       
+    }
+
+    on_fail = {
+    }
+
+    transferable = yes
+    weight = 90
+    should_be_pinned_by_default = no
+}
+
+je_carlist_wars_new_world_colonies_la_plata = {
+    icon = "gfx/interface/icons/invention_icons/nationalism.dds"
+
+    group = je_group_historical_content
+
+    scripted_progress_bar = carlist_la_plata_old_claim_progress_bar
+
+
+    possible = {
+    }
+
+    immediate = {
+        hidden_effect= {
+            # create old colonies regions
+            # la plata
+            if = {
+                # don't set things twice
+                limit = {
+                    any_state_region = {
+                        has_variable = carlist_la_plata_old_claim
+                    }
+                }
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_la_plata_old_claim
+                    }
+                    add_claim = c:SPA
+                }
+            }
+            else = {
+                every_state_region = {
+                    limit = {
+                        NOT = {
+                            has_variable = carlist_peru_old_claim
+                        } 
+                        any_scope_state = {
+                                OR = {
+                                    owner = c:ARG
+                                    owner = c:CHL
+                                }  
+                        }
+                        # avoid states being colonized to avoid weird stuff with the ARG and CHL
+                        NOT = {
+                            any_scope_state = {
+                                owner = { is_country_type = decentralized }
+                            }
+                        }
+                    }
+                    set_variable = {
+                        name = carlist_la_plata_old_claim
+                    }
+                    add_claim = c:SPA
+                }
+            }
+        }
+    }
+
+    on_monthly_pulse = {
+    }
+
+    complete = {
+       
+    }
+
+    fail = {
+       
+    }
+
+    on_fail = {
+    }
+
+    transferable = yes
+    weight = 90
+    should_be_pinned_by_default = no
 }
 
 je_carlist_wars_reconstruction = {

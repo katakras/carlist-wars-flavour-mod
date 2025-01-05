@@ -16,6 +16,23 @@
   je_carlist_wars_tensions:0 "Tensions With the Carlists"
   je_carlist_wars_tensions_reason:1 "[SCOPE.sCharacter('carlista_leader_character').GetFullName], the son of king Charles IV of Spain is gaining popularity and is a challenge to the reign of [ROOT.GetCountry.GetRuler.GetFullName]. Followers of Carlos are attempting to return to a more traditional monarchy with Carlos at the head of it."
 
+  je_carlist_wars_new_world_colonies: "Spanish Colonies in the New World"
+  je_carlist_wars_new_world_colonies_reason: "In recent years, multiple colonies in the New World have gained independence. The recognition of other great powers is giving their independence legitimacy. Is it time for us to follow suit and work towards building better relationships?"
+
+  je_carlist_zero_claim_strength: "Has a zero claim strength."
+
+  je_carlist_wars_new_world_colonies_new_spain: "Spanish Colonies: New Spain"
+  je_carlist_wars_new_world_colonies_new_spain_reason: "We still have a claim on the territories of New Spain. A weak claim will make us infamous\n\n[SCOPE.sCountry('new_spain_scope').GetNameNoFlag] having a sizeable [concept_gdp] while not being our subject will decrease our claim strength.\n\nWe will currently gain #variable [Country.MakeScope.Var('infamy_change').GetValue|-]#! infamy per month."
+
+  je_carlist_wars_new_world_colonies_new_granada: "Spanish Colonies: New Granada"
+  je_carlist_wars_new_world_colonies_new_granada_reason: ""
+
+  je_carlist_wars_new_world_colonies_peru: "Spanish Colonies: Peru"
+  je_carlist_wars_new_world_colonies_peru_reason: ""
+
+  je_carlist_wars_new_world_colonies_la_plata: "Spanish Colonies: La Plata"
+  je_carlist_wars_new_world_colonies_la_plata_reason: ""
+
   je_carlist_wars_reconstruction:0 "Nation's Reconstruction"
   je_carlist_wars_reconstruction_reason:1 "The nation is ravaged from the war. The past is behind us and we need to bring our country back into growth."
   je_carlist_wars_reconstruction_goal:0 "Increase GDP by 20%"
@@ -126,6 +143,11 @@
   carlist_is_not_la_plata: "Is not La Plata."
   carlist_la_plata_exists: "La Plata/Argentina exists."
 
+  carlist_wars_recognise_new_spain_button: "Recognise New Spain"
+  carlist_wars_recognise_new_spain_button_desc: "We will recognise the independence of New Spain, removing all our claims in their territory."
+  carlist_wars_loses_new_spain_claims: "Loses all claims in New Spain."
+
+
   carlist_new_constitucion: "La Constitucion"
   carlist_moyano_law: "Ley Moyano"
   carlist_desamortizacion: "Desamortización"
@@ -142,3 +164,22 @@
   carlist_wars_rename_to_spain: "Rename Nation to Spain"
   carlist_wars_rename_to_spain_desc: "After our victory, we should legitimize our new government by adopting the name our country always had."
   carlist_wars_rename_to_spain_effect: "Rename our country to Spain."
+
+  carlist_new_spain_old_claim_progress_bar_name:1 "Claim Strength in New Spain"
+  carlist_new_spain_old_claim_progress_bar_desc: "Claim Strength: #v [JournalEntry.GetCurrentBarProgress(ScriptedProgressBar.Self)|%]#!"
+  carlist_new_spain_tenth_gdp_progress_bar: "New Spain has more than a tenth of our GDP"
+
+
+  carlist_new_granada_old_claim_progress_bar_name:1 "Claim Strength in New Granada"
+  carlist_new_granada_old_claim_progress_bar_desc: "Claim Strength: #v [JournalEntry.GetCurrentBarProgress(ScriptedProgressBar.Self)|%]#!"
+
+  carlist_peru_old_claim_progress_bar_name:1 "Claim Strength in Peru"
+  carlist_peru_old_claim_progress_bar_desc: "Claim Strength: #v [JournalEntry.GetCurrentBarProgress(ScriptedProgressBar.Self)|%]#!"
+
+  carlist_la_plata_old_claim_progress_bar_name:1 "Claim Strength in La Plata"
+  carlist_la_plata_old_claim_progress_bar_desc: "Claim Strength: #v [JournalEntry.GetCurrentBarProgress(ScriptedProgressBar.Self)|%]#!"
+
+  carlist_autocratic_monarchy: "Spain is an autocratic monarchy"
+  carlist_non_autocratic_monarchy: "Spain is not an autocratic monarchy"
+  carlist_gp_owns_old_claim: "A Great Power owns land from one of our colonies"
+  carlist_spain_owns_old_claim: "We/our subjects own land of our colonies"

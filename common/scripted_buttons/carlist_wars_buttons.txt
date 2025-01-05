@@ -762,3 +762,55 @@ carlist_wars_reform_la_plata_button = {
         }
     }
 }
+
+carlist_wars_recognise_new_spain_button = {
+    name = "carlist_wars_recognise_new_spain_button"
+    desc = "carlist_wars_recognise_new_spain_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        
+    }
+
+    ai_chance = {
+        base = 10
+        modifier = {
+            trigger = { infamy > 0 }
+            add = 10
+        }
+        modifier = {
+            trigger = {
+                je:je_carlist_wars_new_world_colonies_new_spain = {
+                    "scripted_bar_progress(carlist_new_spain_old_claim_progress_bar)" < 25
+                }
+            }
+            add = 30
+        }
+    }
+
+    effect = {
+        custom_tooltip = {
+            text = carlist_wars_loses_new_spain_claims
+            hidden_effect = {
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_new_spain_old_claim
+                    }
+                    remove_claim = c:SPA
+                }
+            }
+        }
+
+        change_infamy = -1
+
+        c:MEX ?= {
+            change_relations = { country = ROOT value = 25 }
+        }
+
+        je:je_carlist_wars_new_world_colonies_new_spain = {
+            add_progress = { value = -100 name = carlist_new_spain_old_claim_progress_bar}
+        }
+        
+    }
+}

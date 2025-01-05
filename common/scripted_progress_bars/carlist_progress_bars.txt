@@ -1,0 +1,138 @@
+﻿carlist_new_spain_old_claim_progress_bar = {
+ 	name = "carlist_new_spain_old_claim_progress_bar_name"
+    desc = "carlist_new_spain_old_claim_progress_bar_desc"
+
+ 	default_green = yes
+
+ 	monthly_progress = {
+		if = {
+            limit = {
+                c:SPA = {
+                    AND = {
+                        has_law = law_type:law_monarchy
+                        has_law = law_type:law_autocracy
+                    }
+                }
+            }
+            add = {
+                desc = carlist_autocratic_monarchy
+                value = 0.5
+            }
+        }
+        else = {
+            subtract = { 
+                desc = carlist_non_autocratic_monarchy
+                value = 0.1
+            }
+        }
+
+        if = {
+            limit = {
+                c:MEX ?= {
+                    AND = {
+                        GDP > { value = ROOT.gdp divide = 10 }
+                        NOT = { is_subject_of = ROOT }
+                    }
+                }
+            }
+
+            subtract = {
+                desc = carlist_new_spain_tenth_gdp_progress_bar
+                value = 0.1
+            }
+        }
+
+        if = {
+            limit = {
+                any_state_region = {
+                    AND = {
+                        has_variable = carlist_new_spain_old_claim
+                        any_scope_state = {
+                            AND = {
+                                NOT = { owner = ROOT }
+                                owner = {
+                                    country_rank >= rank_value:great_power
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            subtract = {
+                desc = carlist_gp_owns_old_claim
+                value = 0.15
+            }
+        }
+
+        if = {
+            limit = {
+                any_state_region = {
+                    AND = {
+                        has_variable = carlist_new_spain_old_claim
+                        any_scope_state = {
+                            OR = {
+                                owner = ROOT 
+                                owner = {
+                                    is_subject_of = ROOT
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            add = {
+                desc = carlist_spain_owns_old_claim
+                value = 0.1
+            }
+        }
+ 	}
+
+	start_value = 35
+	min_value = 0
+	max_value = 100
+}
+
+carlist_new_granada_old_claim_progress_bar = {
+ 	name = "carlist_new_granada_old_claim_progress_bar_name"
+    desc = "carlist_new_granada_old_claim_progress_bar_desc"
+
+ 	default_green = yes
+
+ 	monthly_progress = {
+		
+ 	}
+
+	start_value = 39
+	min_value = 0
+	max_value = 100
+}
+
+carlist_peru_old_claim_progress_bar = {
+ 	name = "carlist_peru_old_claim_progress_bar_name"
+    desc = "carlist_peru_old_claim_progress_bar_desc"
+
+ 	default_green = yes
+
+ 	monthly_progress = {
+		
+ 	}
+
+	start_value = 65
+	min_value = 0
+	max_value = 100
+}
+
+carlist_la_plata_old_claim_progress_bar = {
+ 	name = "carlist_la_plata_old_claim_progress_bar_name"
+    desc = "carlist_la_plata_old_claim_progress_bar_desc"
+
+ 	default_green = yes
+
+ 	monthly_progress = {
+		
+ 	}
+
+	start_value = 42
+	min_value = 0
+	max_value = 100
+}
