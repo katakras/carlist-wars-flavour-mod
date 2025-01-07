@@ -225,6 +225,12 @@ carlist_wars_rebuild_colonial_empire_button = {
             value = 10
         }
 
+        add_modifier = {
+            name = carlist_new_world_empire_prestige
+            years = 10
+            is_decaying = yes
+        }
+
         set_variable = carlist_reasserted_claims
     }
 }

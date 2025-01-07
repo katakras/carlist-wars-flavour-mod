@@ -50,9 +50,6 @@
   je_carlist_wars_carlist_revanchism:0 "Carlist Threat"
   je_carlist_wars_carlist_revanchism_reason:1 "Carlist supporters are regrouping after their defeat. We must completely get rid of Carlist support, or regions of our nation may rebel to install another Carlist pretender in the throne."
 
-  je_carlist_wars_colonial_empire: "New World Colonial Empire"
-  je_carlist_wars_colonial_empire_reason: "It has not been that long since most colonies in the New World broke free. Spain is a historically strong global nation, and to maintain that status we should bring the breakaway colonies back into the fold."
-
   spc_state_defection:0 "[SCOPE.sState('spc_defector_state').GetName] defects to the [SCOPE.sCountry('carlist_spain_scope').GetName]"
 
   carlist_wars.1.t: "Support for Carlos Begins"
