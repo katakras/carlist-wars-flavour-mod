@@ -135,6 +135,72 @@ carlist_wars_events.2 = {
             set_variable = first_carlist_crisis_over
             set_variable = choosing_first_carlist_war_side
         }
+
+        if = {
+            limit = {
+                c:SPA = {
+                    has_journal_entry = je_carlist_wars_new_world_colonies
+                }
+            }
+            c:SPC = {
+                add_journal_entry = {
+                    type = je_carlist_wars_new_world_colonies
+                }
+            }
+
+            if = {
+                limit = {
+                    c:SPA = {
+                        has_journal_entry = je_carlist_wars_new_world_colonies_new_spain
+                    }
+                }
+                c:SPC = {
+                    add_journal_entry = {
+                        type = je_carlist_wars_new_world_colonies_new_spain
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    c:SPA = {
+                        has_journal_entry = je_carlist_wars_new_world_colonies_new_granada
+                    }
+                }
+                c:SPC = {
+                    add_journal_entry = {
+                        type = je_carlist_wars_new_world_colonies_new_granada
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    c:SPA = {
+                        has_journal_entry = je_carlist_wars_new_world_colonies_peru
+                    }
+                }
+                c:SPC = {
+                    add_journal_entry = {
+                        type = je_carlist_wars_new_world_colonies_peru
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    c:SPA = {
+                        has_journal_entry = je_carlist_wars_new_world_colonies_la_plata
+                    }
+                }
+                c:SPC = {
+                    add_journal_entry = {
+                        type = je_carlist_wars_new_world_colonies_la_plata
+                    }
+                }
+            }
+
+        }
+
+
+
     }
 
     option = {
@@ -474,6 +540,106 @@ carlist_wars_events.6 = {
             hidden_effect = {
                 change_infamy = -150
             }
+        }
+    }
+}
+
+# Initial set up of variables on claims
+carlist_wars_events.7 = {
+    type = country_event 
+	hidden = yes 
+
+    trigger = {
+        # Fired at game start
+    }
+
+    immediate = {
+
+            # new spain
+        every_state_region = {
+            limit = {
+                AND = {
+                    any_scope_state = {
+                            OR = {
+                                owner = c:MEX
+                                owner = c:UCA
+                            }  
+                    }
+                    # avoid states being colonized to avoid weird stuff with the USA
+                    # these are: STATE_NEVADA, STATE_ARIZONA, STATE_UTAH, STATE_NEW_MEXICO, STATE_TEXAS
+                    NOT = {
+                        any_scope_state = {
+                            owner = { is_country_type = decentralized }
+                        }
+                    }
+                }
+            }
+            set_variable = {
+                name = carlist_new_spain_old_claim
+            }
+        }
+
+        # new granada
+        every_state_region = {
+            limit = {
+                    any_scope_state = {
+                            OR = {
+                            owner = c:CLM
+                            owner = c:VNZ
+                            owner = c:ECU
+                        }
+                    }
+            }
+            set_variable = {
+                name = carlist_new_granada_old_claim
+            }
+            add_claim = c:SPA
+        }
+
+        # peru
+        every_state_region = {
+            limit = {
+                NOT = {
+                    has_variable = carlist_new_granada_old_claim
+                } 
+                any_scope_state = {
+                    OR = {
+                        owner = c:NPU
+                        owner = c:BOL
+                        owner = c:IQU
+                        owner = c:SPU
+                    }
+                }
+            }
+            set_variable = {
+                name = carlist_peru_old_claim
+            }
+            add_claim = c:SPA
+        }
+
+        # la plata
+        every_state_region = {
+            limit = {
+                NOT = {
+                    has_variable = carlist_peru_old_claim
+                } 
+                any_scope_state = {
+                        OR = {
+                            owner = c:ARG
+                            owner = c:CHL
+                        }  
+                }
+                # avoid states being colonized to avoid weird stuff with the ARG and CHL
+                NOT = {
+                    any_scope_state = {
+                        owner = { is_country_type = decentralized }
+                    }
+                }
+            }
+            set_variable = {
+                name = carlist_la_plata_old_claim
+            }
+            add_claim = c:SPA
         }
     }
 }

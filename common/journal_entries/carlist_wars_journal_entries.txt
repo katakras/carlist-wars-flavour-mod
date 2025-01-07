@@ -55,11 +55,422 @@
         trigger_event = {
             id = carlist_wars_events.2
         }
-        set_variable = first_carlist_crisis_over
+        set_variable = { name = first_carlist_crisis_over }
     }
 
     weight = 100
     should_be_pinned_by_default = yes
+}
+
+je_carlist_wars_new_world_colonies = {
+    icon = "gfx/interface/icons/invention_icons/nationalism.dds"
+
+    group = je_group_historical_content
+
+    possible = {
+    }
+
+    immediate = {
+    }
+
+    on_monthly_pulse = {
+    }
+
+    complete = {
+       NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_new_spain }
+       NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_new_granada }
+       NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_peru }
+       NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_la_plata }
+    }
+
+    fail = {
+       
+    }
+
+    on_fail = {
+    }
+
+    transferable = yes
+    weight = 100
+    should_be_pinned_by_default = yes
+}
+
+je_carlist_wars_new_world_colonies_new_spain = {
+    icon = "gfx/interface/icons/invention_icons/nationalism.dds"
+
+    group = je_group_historical_content
+
+    scripted_progress_bar = carlist_new_spain_old_claim_progress_bar
+
+    scripted_button = carlist_wars_recognise_new_spain_button
+    scripted_button = carlist_wars_reform_new_spain_button
+
+    immediate = {
+        
+        c:MEX ?= {
+            save_scope_as = new_spain_scope
+        }
+        
+        hidden_effect= {
+            # create old colonies regions
+            every_state_region = {
+                limit = {
+                    has_variable = carlist_new_spain_old_claim
+                }
+                add_claim = ROOT
+            }
+
+        set_variable = {
+            name = infamy_change
+            value = 0
+        }
+
+        }
+
+    }
+
+    on_monthly_pulse = {
+        effect = {
+            if = {
+                limit = {
+                    je:je_carlist_wars_new_world_colonies_new_spain ?= {
+                        "scripted_bar_progress(carlist_new_spain_old_claim_progress_bar)" < 25
+                    }
+                }
+                set_variable = {
+                    name = infamy_change
+                    value = {
+                        add = 0.5
+                        if = {
+                            limit = {
+                                je:je_carlist_wars_new_world_colonies_new_spain ?= {
+                                    "scripted_bar_progress(carlist_new_spain_old_claim_progress_bar)" < 15
+                                }
+                            }
+                            add = 0.5
+                        }
+                        if = {
+                            limit = {
+                                je:je_carlist_wars_new_world_colonies_new_spain ?= {
+                                    "scripted_bar_progress(carlist_new_spain_old_claim_progress_bar)" < 5
+                                }
+                            }
+                            add = 1.0
+                        }
+                    }
+                }
+                change_infamy = var:infamy_change
+            }
+        }
+    }
+
+    complete = {
+        any_state = {
+            filter = {
+                custom_tooltip = {
+                    text = je_carlist_wars_new_world_colonies_new_spain_is_claim
+                    state_region = {
+                        has_variable = carlist_new_spain_old_claim
+                    }
+                }
+            }
+            OR = {
+                owner = ROOT
+                owner = { is_subject_of = ROOT }
+            }
+            percent >= 0.9
+        }
+    }
+
+    fail = {
+        custom_tooltip = {
+            text = je_carlist_zero_claim_strength
+            je:je_carlist_wars_new_world_colonies_new_spain ?= {
+                "scripted_bar_progress(carlist_new_spain_old_claim_progress_bar)" = 0.0
+            }
+        }
+    }
+
+    on_fail = {
+        custom_tooltip = {
+            text = carlist_wars_loses_new_spain_claims
+            hidden_effect = {
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_new_spain_old_claim
+                    }
+                    remove_claim = ROOT
+                }
+            }
+        }
+    }
+
+    transferable = yes
+    weight = 90
+    should_be_pinned_by_default = no
+}
+
+je_carlist_wars_new_world_colonies_new_granada = {
+    icon = "gfx/interface/icons/invention_icons/nationalism.dds"
+
+    group = je_group_historical_content
+    scripted_progress_bar = carlist_new_granada_old_claim_progress_bar
+
+    scripted_button = carlist_wars_recognise_new_granada_button
+    scripted_button = carlist_wars_reform_new_granada_button
+
+    possible = {
+    }
+
+    immediate = {
+        c:CLM ?= {
+            save_scope_as = new_granada_scope
+        }
+
+        hidden_effect= {
+            # create old colonies regions
+            every_state_region = {
+                limit = {
+                    has_variable = carlist_new_granada_old_claim
+                }
+                add_claim = ROOT
+            }
+
+            set_variable = {
+                name = infamy_change
+                value = 0
+            }
+        }
+    }
+
+    on_monthly_pulse = {
+        random_events = {
+            3 = 0
+            1 = carlist_wars_events.3
+        }
+    }
+
+    complete = {
+       any_state = {
+            filter = {
+                custom_tooltip = {
+                    text = je_carlist_wars_new_world_colonies_new_granada_is_claim
+                    state_region = {
+                        has_variable = carlist_new_granada_old_claim
+                    }
+                }
+            }
+            OR = {
+                owner = ROOT
+                owner = { is_subject_of = ROOT }
+            }
+            percent >= 0.9
+        }
+    }
+
+    fail = {
+       custom_tooltip = {
+            text = je_carlist_zero_claim_strength
+            je:je_carlist_wars_new_world_colonies_new_granada ?= {
+                "scripted_bar_progress(carlist_new_granada_old_claim_progress_bar)" = 0.0
+            }
+        }
+    }
+
+    on_fail = {
+        custom_tooltip = {
+            text = carlist_wars_loses_new_granada_claims
+            hidden_effect = {
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_new_granada_old_claim
+                    }
+                    remove_claim = ROOT
+                }
+            }
+        }
+    }
+
+    transferable = yes
+    weight = 90
+    should_be_pinned_by_default = no
+}
+
+je_carlist_wars_new_world_colonies_peru = {
+    icon = "gfx/interface/icons/invention_icons/nationalism.dds"
+
+    group = je_group_historical_content
+
+    scripted_progress_bar = carlist_peru_old_claim_progress_bar
+
+    scripted_button = carlist_wars_recognise_peru_button
+    scripted_button = carlist_wars_reform_peru_button
+
+    possible = {
+    }
+
+    immediate = {
+        if = {
+            limit = {
+                exists = c:PEU
+            }
+            c:PEU ?= {
+                save_scope_as = peru_scope
+            }
+        }
+        else = {
+            c:BOL ?= {
+                save_scope_as = peru_scope
+            }
+        }
+        
+
+        hidden_effect= {
+            # create old colonies regions
+            every_state_region = {
+                limit = {
+                    has_variable = carlist_peru_old_claim
+                }
+                add_claim = ROOT
+            }   
+
+            set_variable = {
+                name = infamy_change
+                value = 0
+            }
+        }
+    }
+
+    on_monthly_pulse = {
+    }
+
+    complete = {
+       any_state = {
+            filter = {
+                custom_tooltip = {
+                    text = je_carlist_wars_new_world_colonies_peru_is_claim
+                    state_region = {
+                        has_variable = carlist_peru_old_claim
+                    }
+                }
+            }
+            OR = {
+                owner = ROOT
+                owner = { is_subject_of = ROOT }
+            }
+            percent >= 0.9
+        }
+    }
+
+    fail = {
+       custom_tooltip = {
+            text = je_carlist_zero_claim_strength
+            je:je_carlist_wars_new_world_colonies_peru ?= {
+                "scripted_bar_progress(carlist_peru_old_claim_progress_bar)" = 0.0
+            }
+        }
+    }
+
+    on_fail = {
+        custom_tooltip = {
+            text = carlist_wars_loses_peru_claims
+            hidden_effect = {
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_peru_old_claim
+                    }
+                    remove_claim = ROOT
+                }
+            }
+        }
+    }
+
+    transferable = yes
+    weight = 90
+    should_be_pinned_by_default = no
+}
+
+je_carlist_wars_new_world_colonies_la_plata = {
+    icon = "gfx/interface/icons/invention_icons/nationalism.dds"
+
+    group = je_group_historical_content
+
+    scripted_progress_bar = carlist_la_plata_old_claim_progress_bar
+
+    scripted_button = carlist_wars_recognise_la_plata_button
+    scripted_button = carlist_wars_reform_la_plata_button
+
+    possible = {
+    }
+
+    immediate = {
+        c:ARG ?= {
+                save_scope_as = la_plata_scope
+            }
+
+        hidden_effect= {
+            # create old colonies regions
+            every_state_region = {
+                limit = {
+                    has_variable = carlist_la_plata_old_claim
+                }
+                add_claim = ROOT
+            }
+
+            set_variable = {
+                name = infamy_change
+                value = 0
+            }
+        }
+    }
+
+    on_monthly_pulse = {
+    }
+
+    complete = {
+       any_state = {
+            filter = {
+                custom_tooltip = {
+                    text = je_carlist_wars_new_world_colonies_la_plata_is_claim
+                    state_region = {
+                        has_variable = carlist_la_plata_old_claim
+                    }
+                }
+            }
+            OR = {
+                owner = ROOT
+                owner = { is_subject_of = ROOT }
+            }
+            percent >= 0.9
+        }
+    }
+
+    fail = {
+       custom_tooltip = {
+            text = je_carlist_zero_claim_strength
+            je:je_carlist_wars_new_world_colonies_la_plata ?= {
+                "scripted_bar_progress(carlist_la_plata_old_claim_progress_bar)" = 0.0
+            }
+        }
+    }
+
+    on_fail = {
+        custom_tooltip = {
+            text = carlist_wars_loses_la_plata_claims
+            hidden_effect = {
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_la_plata_old_claim
+                    }
+                    remove_claim = ROOT
+                }
+            }
+        }
+    }
+
+    transferable = yes
+    weight = 90
+    should_be_pinned_by_default = no
 }
 
 je_carlist_wars_reconstruction = {
@@ -291,127 +702,6 @@ je_carlist_wars_carlist_revanchism = {
 
     on_fail = {
     }
-
-    weight = 100
-    should_be_pinned_by_default = yes
-}
-
-je_carlist_wars_colonial_empire = {
-    group = je_group_historical_content
-
-    scripted_button = carlist_wars_reform_new_spain_button
-    scripted_button = carlist_wars_reform_new_granada_button
-    scripted_button = carlist_wars_reform_peru_button
-    scripted_button = carlist_wars_reform_la_plata_button
-
-    modifiers_while_active = {
-        carlist_new_world_empire_prestige
-    }
-
-    immediate = {
-        every_state_region = {
-            # claims to all states owned by ex-colonies or homelands of hispanophonic primary cultures
-            limit = {
-                any_scope_state = {
-                    NOT = { owner = ROOT }
-
-                    owner = {
-                        NOT = { is_subject_of = ROOT }
-                    }
-                }
-                OR = {
-                    any_scope_state = {
-                        owner = {
-                            any_primary_culture = {
-                                has_discrimination_trait = hispanophone
-                            }
-                            OR = {
-                                country_is_in_south_america = yes
-                                country_is_in_central_america = yes
-                                country_is_in_north_america = yes
-                            }
-                        }
-                    }
-                    OR = {
-                        is_homeland = cu:mexican
-                        is_homeland = cu:central_american
-                        is_homeland = cu:caribeno
-                        is_homeland = cu:north_andean
-                        is_homeland = cu:south_andean
-                        is_homeland = cu:peruvian
-                        is_homeland = cu:bolivian
-                        is_homeland = cu:ecuadorian
-                        is_homeland = cu:chilean
-                        is_homeland = cu:venezuelan
-                        is_homeland = cu:argentine
-                        is_homeland = cu:uruguayan
-                        is_homeland = cu:paraguayan
-                        is_homeland = cu:colombian
-                        is_homeland = cu:platinean
-                        is_homeland = cu:afro_caribeno
-                    }
-                }
-            }
-            add_claim = ROOT
-        }
-    }
-
-    invalid = {}
-    complete = {}
-
-    fail = {
-        OR = {
-            country_rank < rank_value:major_power
-            NOT = { has_law = law_type:law_monarchy }
-            NOT = { has_law = law_type:law_autocracy }
-        }
-    }
-    on_fail = {
-        custom_tooltip = {
-            text = carlist_removes_claims_in_americas
-            every_state_region = {
-                limit = {
-                    any_scope_state = {
-                        has_claim_by = ROOT
-                        OR = {
-                            owner = {
-                                any_primary_culture = {
-                                    has_discrimination_trait = hispanophone
-                                }
-                                OR = {
-                                    country_is_in_south_america = yes
-                                    country_is_in_central_america = yes
-                                    country_is_in_north_america = yes
-                                }
-                            }
-                            state_region = {
-                                OR = {
-                                    is_homeland = cu:mexican
-                                    is_homeland = cu:central_american
-                                    is_homeland = cu:caribeno
-                                    is_homeland = cu:north_andean
-                                    is_homeland = cu:south_andean
-                                    is_homeland = cu:peruvian
-                                    is_homeland = cu:bolivian
-                                    is_homeland = cu:ecuadorian
-                                    is_homeland = cu:chilean
-                                    is_homeland = cu:venezuelan
-                                    is_homeland = cu:argentine
-                                    is_homeland = cu:uruguayan
-                                    is_homeland = cu:paraguayan
-                                    is_homeland = cu:colombian
-                                    is_homeland = cu:platinean
-                                    is_homeland = cu:afro_caribeno
-                                }
-                            }
-                        }
-                    }
-                }
-                remove_claim = ROOT
-            }
-        }
-    }
-
 
     weight = 100
     should_be_pinned_by_default = yes
