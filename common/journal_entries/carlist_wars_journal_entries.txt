@@ -165,6 +165,21 @@ je_carlist_wars_new_world_colonies_new_spain = {
     }
 
     complete = {
+        any_state = {
+            filter = {
+                custom_tooltip = {
+                    text = je_carlist_wars_new_world_colonies_new_spain_is_claim
+                    state_region = {
+                        has_variable = carlist_new_spain_old_claim
+                    }
+                }
+            }
+            OR = {
+                owner = ROOT
+                owner = { is_subject_of = ROOT }
+            }
+            percent >= 0.9
+        }
     }
 
     fail = {
@@ -236,7 +251,21 @@ je_carlist_wars_new_world_colonies_new_granada = {
     }
 
     complete = {
-       
+       any_state = {
+            filter = {
+                custom_tooltip = {
+                    text = je_carlist_wars_new_world_colonies_new_granada_is_claim
+                    state_region = {
+                        has_variable = carlist_new_granada_old_claim
+                    }
+                }
+            }
+            OR = {
+                owner = ROOT
+                owner = { is_subject_of = ROOT }
+            }
+            percent >= 0.9
+        }
     }
 
     fail = {
@@ -316,7 +345,21 @@ je_carlist_wars_new_world_colonies_peru = {
     }
 
     complete = {
-       
+       any_state = {
+            filter = {
+                custom_tooltip = {
+                    text = je_carlist_wars_new_world_colonies_peru_is_claim
+                    state_region = {
+                        has_variable = carlist_peru_old_claim
+                    }
+                }
+            }
+            OR = {
+                owner = ROOT
+                owner = { is_subject_of = ROOT }
+            }
+            percent >= 0.9
+        }
     }
 
     fail = {
@@ -385,7 +428,21 @@ je_carlist_wars_new_world_colonies_la_plata = {
     }
 
     complete = {
-       
+       any_state = {
+            filter = {
+                custom_tooltip = {
+                    text = je_carlist_wars_new_world_colonies_la_plata_is_claim
+                    state_region = {
+                        has_variable = carlist_la_plata_old_claim
+                    }
+                }
+            }
+            OR = {
+                owner = ROOT
+                owner = { is_subject_of = ROOT }
+            }
+            percent >= 0.9
+        }
     }
 
     fail = {

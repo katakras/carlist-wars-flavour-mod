@@ -381,7 +381,7 @@ carlist_la_plata_old_claim_progress_bar = {
             limit = {
                 any_state_region = {
                     AND = {
-                        has_variable = carlist_new_granada_old_claim
+                        has_variable = carlist_la_plata_old_claim
                         any_scope_state = {
                             AND = {
                                 NOT = { owner = ROOT }
@@ -403,7 +403,7 @@ carlist_la_plata_old_claim_progress_bar = {
             limit = {
                 any_state_region = {
                     AND = {
-                        has_variable = carlist_new_granada_old_claim
+                        has_variable = carlist_la_plata_old_claim
                         any_scope_state = {
                             OR = {
                                 owner = ROOT 

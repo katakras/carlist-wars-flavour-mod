@@ -23,15 +23,19 @@
 
   je_carlist_wars_new_world_colonies_new_spain: "Spanish Colonies: New Spain"
   je_carlist_wars_new_world_colonies_new_spain_reason: "We still have a claim on the territories of New Spain. A weak claim will make us infamous\n\n[SCOPE.sCountry('new_spain_scope').GetNameNoFlag] having a sizeable [concept_gdp] while not being our subject will decrease our claim strength.\n\nWe will currently gain #variable [Country.MakeScope.Var('infamy_change').GetValue|-]#! infamy per month."
+  je_carlist_wars_new_world_colonies_new_spain_is_claim: "Is an old claim in New Spain."
 
   je_carlist_wars_new_world_colonies_new_granada: "Spanish Colonies: New Granada"
   je_carlist_wars_new_world_colonies_new_granada_reason: "We still have a claim on the territories of New Granada. A weak claim will make us infamous\n\n[SCOPE.sCountry('new_granada_scope').GetNameNoFlag] having a sizeable [concept_gdp] while not being our subject will decrease our claim strength.\n\nWe will currently gain #variable [Country.MakeScope.Var('infamy_change').GetValue|-]#! infamy per month."
+  je_carlist_wars_new_world_colonies_new_granada_is_claim: "Is an old claim in New Granada."
 
   je_carlist_wars_new_world_colonies_peru: "Spanish Colonies: Peru"
   je_carlist_wars_new_world_colonies_peru_reason: "We still have a claim on the territories of Peru. A weak claim will make us infamous\n\n[SCOPE.sCountry('peru_scope').GetNameNoFlag] having a sizeable [concept_gdp] while not being our subject will decrease our claim strength.\n\nWe will currently gain #variable [Country.MakeScope.Var('infamy_change').GetValue|-]#! infamy per month."
+  je_carlist_wars_new_world_colonies_peru_is_claim: "Is an old claim in Peru."
 
   je_carlist_wars_new_world_colonies_la_plata: "Spanish Colonies: La Plata"
   je_carlist_wars_new_world_colonies_la_plata_reason: "We still have a claim on the territories of La Plata. A weak claim will make us infamous\n\n[SCOPE.sCountry('la_plata_scope').GetNameNoFlag] having a sizeable [concept_gdp] while not being our subject will decrease our claim strength.\n\nWe will currently gain #variable [Country.MakeScope.Var('infamy_change').GetValue|-]#! infamy per month."
+  je_carlist_wars_new_world_colonies_la_plata_is_claim: "Is an old claim in La Plata."
 
   je_carlist_wars_reconstruction:0 "Nation's Reconstruction"
   je_carlist_wars_reconstruction_reason:1 "The nation is ravaged from the war. The past is behind us and we need to bring our country back into growth."
