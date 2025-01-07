@@ -198,5 +198,6 @@
   carlist_autocratic_monarchy: "Spain is an autocratic monarchy"
   carlist_non_autocratic_monarchy: "Spain is not an autocratic monarchy"
   carlist_gp_owns_old_claim: "A Great Power owns land from one of our colonies"
-  carlist_spain_owns_old_claim: "We/our subjects own land of our colonies"
+  carlist_spain_owns_old_claim: "We/our subjects own land of our old claims"
+  carlist_spain_owns_50_old_claim: "We/our subjects own half of our old claims"
   carlist_has_reasserted_claims: "We have reasserted our claims in the New World"

@@ -94,6 +94,27 @@
                 value = 0.1
             }
         }
+
+        if = {
+            limit = {
+                any_state = {
+                    filter = {
+                        state_region = {
+                            has_variable = carlist_new_spain_old_claim
+                        }
+                    }
+                    OR = {
+                        owner = ROOT
+                        owner = { is_subject_of = ROOT }
+                    }
+                    percent >= 0.5
+                }
+            }
+            add = {
+                desc = carlist_spain_owns_50_old_claim
+                value = 0.1
+            }
+        }
  	}
 
 	start_value = 37
@@ -196,6 +217,27 @@ carlist_new_granada_old_claim_progress_bar = {
             }
             add = {
                 desc = carlist_spain_owns_old_claim
+                value = 0.1
+            }
+        }
+
+        if = {
+            limit = {
+                any_state = {
+                    filter = {
+                        state_region = {
+                            has_variable = carlist_new_granada_old_claim
+                        }
+                    }
+                    OR = {
+                        owner = ROOT
+                        owner = { is_subject_of = ROOT }
+                    }
+                    percent >= 0.5
+                }
+            }
+            add = {
+                desc = carlist_spain_owns_50_old_claim
                 value = 0.1
             }
         }
@@ -317,6 +359,27 @@ carlist_peru_old_claim_progress_bar = {
                 value = 0.1
             }
         }
+
+        if = {
+            limit = {
+                any_state = {
+                    filter = {
+                        state_region = {
+                            has_variable = carlist_peru_old_claim
+                        }
+                    }
+                    OR = {
+                        owner = ROOT
+                        owner = { is_subject_of = ROOT }
+                    }
+                    percent >= 0.5
+                }
+            }
+            add = {
+                desc = carlist_spain_owns_50_old_claim
+                value = 0.1
+            }
+        }
  	}
 
 	start_value = 65
@@ -417,6 +480,27 @@ carlist_la_plata_old_claim_progress_bar = {
             }
             add = {
                 desc = carlist_spain_owns_old_claim
+                value = 0.1
+            }
+        }
+        
+        if = {
+            limit = {
+                any_state = {
+                    filter = {
+                        state_region = {
+                            has_variable = carlist_la_plata_old_claim
+                        }
+                    }
+                    OR = {
+                        owner = ROOT
+                        owner = { is_subject_of = ROOT }
+                    }
+                    percent >= 0.5
+                }
+            }
+            add = {
+                desc = carlist_spain_owns_50_old_claim
                 value = 0.1
             }
         }
