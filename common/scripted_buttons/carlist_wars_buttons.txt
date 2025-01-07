@@ -171,14 +171,61 @@ carlist_wars_rebuild_colonial_empire_button = {
     visible = { always = yes }
 
     possible = {
-        NOT = { has_journal_entry = je_carlist_wars_colonial_empire }
+        custom_tooltip = {
+            text = carlist_not_reasserted_claims
+            NOT = { has_variable = carlist_reasserted_claims }
+        }
     }
 
     effect = {
 
-        add_journal_entry = { type = je_carlist_wars_colonial_empire }
-        change_infamy = 10
+        if = {
+            limit = {
+                NOT = { has_journal_entry = je_carlist_wars_new_world_colonies }
+            }
+            add_journal_entry = { type = je_carlist_wars_new_world_colonies }
+        }
+        if = {
+            limit = {
+                NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_new_spain }
+            }
+            add_journal_entry = { type = je_carlist_wars_new_world_colonies_new_spain }
+            change_infamy = {
+                value = 5
+            }
+        }
+        if = {
+            limit = {
+                NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_new_granada }
+            }
+            add_journal_entry = { type = je_carlist_wars_new_world_colonies_new_granada }
+            change_infamy = {
+                value = 5
+            }
+        }
+        if = {
+            limit = {
+                NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_peru }
+            }
+            add_journal_entry = { type = je_carlist_wars_new_world_colonies_peru }
+            change_infamy = {
+                value = 5
+            }
+        }
+        if = {
+            limit = {
+                NOT = { has_journal_entry = je_carlist_wars_new_world_colonies_la_plata }
+            }
+            add_journal_entry = { type = je_carlist_wars_new_world_colonies_la_plata }
+            change_infamy = {
+                value = 5
+            }
+        }
+        change_infamy = {
+            value = 10
+        }
 
+        set_variable = carlist_reasserted_claims
     }
 }
 
@@ -248,16 +295,7 @@ carlist_wars_reform_new_spain_button = {
                 text = carlist_historical_new_spain_claim
                 any_scope_state = {
                     state_region = {
-                        OR = {
-                            is_homeland = cu:caribeno
-                            is_homeland = cu:central_american
-                            is_homeland = cu:mexican
-                            is_homeland = cu:pueblo
-                            is_homeland = cu:navajo
-                            is_homeland = cu:apache
-                            is_homeland = cu:paiute
-                            is_homeland = cu:hokan
-                        }
+                        has_variable = carlist_new_spain_old_claim
                     }
                 }
             }
@@ -274,16 +312,7 @@ carlist_wars_reform_new_spain_button = {
                     text = carlist_historical_new_spain_claim
                     any_scope_state = {
                         state_region = {
-                            OR = {
-                                is_homeland = cu:caribeno
-                                is_homeland = cu:central_american
-                                is_homeland = cu:mexican
-                                is_homeland = cu:pueblo
-                                is_homeland = cu:navajo
-                                is_homeland = cu:apache
-                                is_homeland = cu:paiute
-                                is_homeland = cu:hokan
-                            }
+                            has_variable = carlist_new_spain_old_claim
                         }
                     }
                 }
@@ -309,44 +338,29 @@ carlist_wars_reform_new_spain_button = {
                             }
 
                         }
+
                         every_scope_state = {
                             limit = {
                                 state_region = {
-                                    OR = {
-                                        is_homeland = cu:mexican
-                                        is_homeland = cu:pueblo
-                                        is_homeland = cu:navajo
-                                        is_homeland = cu:apache
-                                        is_homeland = cu:paiute
-                                        is_homeland = cu:hokan
+                                    AND = {
+                                        has_variable = carlist_new_spain_old_claim
+                                        is_homeland = cu:central_american
                                     }
-                                }
-                            }
-                            set_state_owner = c:MEX
-                        }
-
-                        every_scope_state = {
-                            limit = {
-                                state_region = {
-                                    is_homeland = cu:caribeno
-                                }
-                            }
-                            set_state_owner = c:MEX
-                            c:MEX ?= {
-                                add_primary_culture = cu:caribeno
-                            }
-                        }
-
-                        every_scope_state = {
-                            limit = {
-                                state_region = {
-                                    is_homeland = cu:central_american
                                 }
                             }
                             set_state_owner = c:MEX
                             c:MEX ?= {
                                 add_primary_culture = cu:central_american
                             }
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    has_variable = carlist_new_spain_old_claim
+                                }
+                            }
+                            set_state_owner = c:MEX
                         }
                     }
                 }
@@ -388,12 +402,7 @@ carlist_wars_reform_new_granada_button = {
                 text = carlist_historical_new_granada_claim
                 any_scope_state = {
                     state_region = {
-                        OR = {
-                            is_homeland = cu:guajiro
-                            is_homeland = cu:colombian
-                            is_homeland = cu:venezuelan
-                            is_homeland = cu:ecuadorian
-                        }
+                        has_variable = carlist_new_granada_old_claim
                     }
                 }
             }
@@ -408,12 +417,7 @@ carlist_wars_reform_new_granada_button = {
                     text = carlist_historical_new_granada_claim
                     any_scope_state = {
                         state_region = {
-                            OR = {
-                                is_homeland = cu:guajiro
-                                is_homeland = cu:colombian
-                                is_homeland = cu:venezuelan
-                                is_homeland = cu:ecuadorian
-                            }
+                            has_variable = carlist_new_granada_old_claim
                         }
                     }
                 }
@@ -441,19 +445,10 @@ carlist_wars_reform_new_granada_button = {
                         every_scope_state = {
                             limit = {
                                 state_region = {
-                                    OR = {
-                                        is_homeland = cu:guajiro
-                                        is_homeland = cu:colombian
+                                    AND = {
+                                        has_variable = carlist_new_granada_old_claim
+                                        is_homeland = cu:ecuadorian
                                     }
-                                }
-                            }
-                            set_state_owner = c:CLM
-                        }
-
-                        every_scope_state = {
-                            limit = {
-                                state_region = {
-                                    is_homeland = cu:ecuadorian
                                 }
                             }
                             set_state_owner = c:CLM
@@ -465,13 +460,28 @@ carlist_wars_reform_new_granada_button = {
                         every_scope_state = {
                             limit = {
                                 state_region = {
-                                    is_homeland = cu:venezuelan
+                                    AND = {
+                                        has_variable = carlist_new_granada_old_claim
+                                        is_homeland = cu:venezuelan
+                                    }
                                 }
                             }
                             set_state_owner = c:CLM
                             c:CLM ?= {
                                 add_primary_culture = cu:venezuelan
                             }
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    OR = {
+                                        is_homeland = cu:guajiro
+                                        is_homeland = cu:colombian
+                                    }
+                                }
+                            }
+                            set_state_owner = c:CLM
                         }
                     }
                 }
@@ -513,12 +523,7 @@ carlist_wars_reform_peru_button = {
                 text = carlist_historical_peru_claim
                 any_scope_state = {
                     state_region = {
-                        OR = {
-                            is_homeland = cu:peruvian
-                            is_homeland = cu:south_andean
-                            is_homeland = cu:north_andean
-                            is_homeland = cu:bolivian
-                        }
+                        has_variable = carlist_peru_old_claim
                     }
                 }
             }
@@ -535,12 +540,7 @@ carlist_wars_reform_peru_button = {
                     text = carlist_historical_peru_claim
                     any_scope_state = {
                         state_region = {
-                            OR = {
-                                is_homeland = cu:peruvian
-                                is_homeland = cu:south_andean
-                                is_homeland = cu:north_andean
-                                is_homeland = cu:bolivian
-                            }
+                           has_variable = carlist_peru_old_claim
                         }
                     }
                 }
@@ -568,7 +568,10 @@ carlist_wars_reform_peru_button = {
                         every_scope_state = {
                             limit = {
                                 state_region = {
-                                    is_homeland = cu:peruvian
+                                    AND = {
+                                        has_variable = carlist_peru_old_claim
+                                        is_homeland = cu:peruvian
+                                    }
                                 }
                             }
                             set_state_owner = c:PEU
@@ -580,16 +583,10 @@ carlist_wars_reform_peru_button = {
                         every_scope_state = {
                             limit = {
                                 state_region = {
-                                    is_homeland = cu:south_andean
-                                }
-                            }
-                            set_state_owner = c:PEU
-                        }
-
-                        every_scope_state = {
-                            limit = {
-                                state_region = {
-                                    is_homeland = cu:north_andean
+                                    AND = {
+                                        has_variable = carlist_peru_old_claim
+                                        is_homeland = cu:north_andean
+                                    }
                                 }
                             }
                             set_state_owner = c:PEU
@@ -601,13 +598,25 @@ carlist_wars_reform_peru_button = {
                         every_scope_state = {
                             limit = {
                                 state_region = {
-                                    is_homeland = cu:bolivian
+                                    AND = {
+                                        has_variable = carlist_peru_old_claim
+                                        is_homeland = cu:bolivian
+                                    }
                                 }
                             }
                             set_state_owner = c:PEU
                             c:PEU ?= {
                                 add_primary_culture = cu:bolivian
                             }
+                        }
+
+                        every_scope_state = {
+                            limit = {
+                                state_region = {
+                                    is_homeland = cu:south_andean
+                                }
+                            }
+                            set_state_owner = c:PEU
                         }
                     }
                 }
@@ -648,12 +657,7 @@ carlist_wars_reform_la_plata_button = {
                 text = carlist_historical_la_plata_claim
                 any_scope_state = {
                     state_region = {
-                        OR = {
-                            is_homeland = cu:argentine
-                            is_homeland = cu:chilean
-                            is_homeland = cu:uruguayan
-                            is_homeland = cu:paraguayan
-                        }
+                        has_variable = carlist_la_plata_old_claim
                     }
                 }
             }
@@ -668,12 +672,7 @@ carlist_wars_reform_la_plata_button = {
                     text = carlist_historical_la_plata_claim
                     any_scope_state = {
                         state_region = {
-                            OR = {
-                                is_homeland = cu:argentine
-                                is_homeland = cu:chilean
-                                is_homeland = cu:uruguayan
-                                is_homeland = cu:paraguayan
-                            }
+                            has_variable = carlist_la_plata_old_claim
                         }
                     }
                 }
@@ -702,16 +701,10 @@ carlist_wars_reform_la_plata_button = {
                         every_scope_state = {
                             limit = {
                                 state_region = {
-                                    is_homeland = cu:argentine
-                                }
-                            }
-                            set_state_owner = c:ARG
-                        }
-
-                        every_scope_state = {
-                            limit = {
-                                state_region = {
-                                    is_homeland = cu:chilean
+                                    AND = {
+                                        has_variable = carlist_la_plata_old_claim
+                                        is_homeland = cu:chilean
+                                    }
                                 }
                             }
                             set_state_owner = c:ARG
@@ -723,25 +716,10 @@ carlist_wars_reform_la_plata_button = {
                         every_scope_state = {
                             limit = {
                                 state_region = {
-                                    is_homeland = cu:uruguayan
+                                    has_variable = carlist_la_plata_old_claim
                                 }
                             }
                             set_state_owner = c:ARG
-                            c:ARG ?= {
-                                add_primary_culture = cu:uruguayan
-                            }
-                        }
-
-                        every_scope_state = {
-                            limit = {
-                                state_region = {
-                                    is_homeland = cu:paraguayan
-                                }
-                            }
-                            set_state_owner = c:ARG
-                            c:ARG ?= {
-                                add_primary_culture = cu:paraguayan
-                            }
                         }
                     }
                 }
@@ -797,7 +775,7 @@ carlist_wars_recognise_new_spain_button = {
                     limit = {
                         has_variable = carlist_new_spain_old_claim
                     }
-                    remove_claim = c:SPA
+                    remove_claim = ROOT
                 }
             }
         }
@@ -810,6 +788,165 @@ carlist_wars_recognise_new_spain_button = {
 
         je:je_carlist_wars_new_world_colonies_new_spain = {
             add_progress = { value = -100 name = carlist_new_spain_old_claim_progress_bar}
+        }
+        
+    }
+}
+
+carlist_wars_recognise_new_granada_button = {
+    name = "carlist_wars_recognise_new_granada_button"
+    desc = "carlist_wars_recognise_new_granada_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        
+    }
+
+    ai_chance = {
+        base = 10
+        modifier = {
+            trigger = { infamy > 0 }
+            add = 10
+        }
+        modifier = {
+            trigger = {
+                je:je_carlist_wars_new_world_colonies_new_granada = {
+                    "scripted_bar_progress(carlist_new_granada_old_claim_progress_bar)" < 25
+                }
+            }
+            add = 30
+        }
+    }
+
+    effect = {
+        custom_tooltip = {
+            text = carlist_wars_loses_new_granada_claims
+            hidden_effect = {
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_new_granada_old_claim
+                    }
+                    remove_claim = ROOT
+                }
+            }
+        }
+
+        change_infamy = -1
+
+        c:CLM ?= {
+            change_relations = { country = ROOT value = 25 }
+        }
+
+        je:je_carlist_wars_new_world_colonies_new_granada = {
+            add_progress = { value = -100 name = carlist_new_granada_old_claim_progress_bar}
+        }
+        
+    }
+}
+
+carlist_wars_recognise_peru_button = {
+    name = "carlist_wars_recognise_peru_button"
+    desc = "carlist_wars_recognise_peru_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        
+    }
+
+    ai_chance = {
+        base = 10
+        modifier = {
+            trigger = { infamy > 0 }
+            add = 10
+        }
+        modifier = {
+            trigger = {
+                je:je_carlist_wars_new_world_colonies_peru = {
+                    "scripted_bar_progress(carlist_peru_old_claim_progress_bar)" < 25
+                }
+            }
+            add = 30
+        }
+    }
+
+    effect = {
+        custom_tooltip = {
+            text = carlist_wars_loses_peru_claims
+            hidden_effect = {
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_peru_old_claim
+                    }
+                    remove_claim = ROOT
+                }
+            }
+        }
+
+        change_infamy = -1
+
+        c:PEU ?= {
+            change_relations = { country = ROOT value = 25 }
+        }
+        c:BOL ?= {
+            change_relations = { country = ROOT value = 25 }
+        }
+
+        je:je_carlist_wars_new_world_colonies_peru = {
+            add_progress = { value = -100 name = carlist_peru_old_claim_progress_bar}
+        }
+        
+    }
+}
+
+carlist_wars_recognise_la_plata_button = {
+    name = "carlist_wars_recognise_la_plata_button"
+    desc = "carlist_wars_recognise_la_plata_button_desc"
+
+    visible = { always = yes }
+
+    possible = {
+        
+    }
+
+    ai_chance = {
+        base = 10
+        modifier = {
+            trigger = { infamy > 0 }
+            add = 10
+        }
+        modifier = {
+            trigger = {
+                je:je_carlist_wars_new_world_colonies_la_plata = {
+                    "scripted_bar_progress(carlist_la_plata_old_claim_progress_bar)" < 25
+                }
+            }
+            add = 30
+        }
+    }
+
+    effect = {
+        custom_tooltip = {
+            text = carlist_wars_loses_la_plata_claims
+            hidden_effect = {
+                every_state_region = {
+                    limit = {
+                        has_variable = carlist_la_plata_old_claim
+                    }
+                    remove_claim = ROOT
+                }
+            }
+        }
+
+        change_infamy = -1
+
+        c:ARG ?= {
+            change_relations = { country = ROOT value = 25 }
+        }
+
+        je:je_carlist_wars_new_world_colonies_la_plata = {
+            add_progress = { value = -100 name = carlist_la_plata_old_claim_progress_bar}
         }
         
     }

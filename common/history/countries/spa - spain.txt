@@ -27,8 +27,25 @@
 		activate_law = law_type:law_oligarchy
 		#activate_law = law_type:law_colonial_exploitation # spain has nothing to colonize in 1836
 
-        add_journal_entry = {
+		trigger_event = {
+			id = carlist_wars_events.7
+		}
+
+		add_journal_entry = {
 			type = je_carlist_wars_new_world_colonies
+		}
+
+        add_journal_entry = {
+			type = je_carlist_wars_new_world_colonies_new_spain
+		}
+		add_journal_entry = {
+			type = je_carlist_wars_new_world_colonies_new_granada
+		}
+		add_journal_entry = {
+			type = je_carlist_wars_new_world_colonies_peru
+		}
+		add_journal_entry = {
+			type = je_carlist_wars_new_world_colonies_la_plata
 		}
 
 		set_institution_investment_level = {

@@ -25,13 +25,13 @@
   je_carlist_wars_new_world_colonies_new_spain_reason: "We still have a claim on the territories of New Spain. A weak claim will make us infamous\n\n[SCOPE.sCountry('new_spain_scope').GetNameNoFlag] having a sizeable [concept_gdp] while not being our subject will decrease our claim strength.\n\nWe will currently gain #variable [Country.MakeScope.Var('infamy_change').GetValue|-]#! infamy per month."
 
   je_carlist_wars_new_world_colonies_new_granada: "Spanish Colonies: New Granada"
-  je_carlist_wars_new_world_colonies_new_granada_reason: ""
+  je_carlist_wars_new_world_colonies_new_granada_reason: "We still have a claim on the territories of New Granada. A weak claim will make us infamous\n\n[SCOPE.sCountry('new_granada_scope').GetNameNoFlag] having a sizeable [concept_gdp] while not being our subject will decrease our claim strength.\n\nWe will currently gain #variable [Country.MakeScope.Var('infamy_change').GetValue|-]#! infamy per month."
 
   je_carlist_wars_new_world_colonies_peru: "Spanish Colonies: Peru"
-  je_carlist_wars_new_world_colonies_peru_reason: ""
+  je_carlist_wars_new_world_colonies_peru_reason: "We still have a claim on the territories of Peru. A weak claim will make us infamous\n\n[SCOPE.sCountry('peru_scope').GetNameNoFlag] having a sizeable [concept_gdp] while not being our subject will decrease our claim strength.\n\nWe will currently gain #variable [Country.MakeScope.Var('infamy_change').GetValue|-]#! infamy per month."
 
   je_carlist_wars_new_world_colonies_la_plata: "Spanish Colonies: La Plata"
-  je_carlist_wars_new_world_colonies_la_plata_reason: ""
+  je_carlist_wars_new_world_colonies_la_plata_reason: "We still have a claim on the territories of La Plata. A weak claim will make us infamous\n\n[SCOPE.sCountry('la_plata_scope').GetNameNoFlag] having a sizeable [concept_gdp] while not being our subject will decrease our claim strength.\n\nWe will currently gain #variable [Country.MakeScope.Var('infamy_change').GetValue|-]#! infamy per month."
 
   je_carlist_wars_reconstruction:0 "Nation's Reconstruction"
   je_carlist_wars_reconstruction_reason:1 "The nation is ravaged from the war. The past is behind us and we need to bring our country back into growth."
@@ -108,8 +108,9 @@
   carlist_wars_fueros_button_desc: "The regions of Navarra and the Basque Country gave us key support during our war. We should grant them the rights that were taken by the liberals."
   not_reestablished_fueros: "Hasn't restablished the Fueros."
 
-  carlist_wars_rebuild_colonial_empire_button: "Rebuild Colonial Empire"
-  carlist_wars_rebuild_colonial_empire_button_desc: "Let's unite the Hispanosphere."
+  carlist_wars_rebuild_colonial_empire_button: "Reassert New World Claims"
+  carlist_wars_rebuild_colonial_empire_button_desc: "Let's unite the Hispanosphere once and for all. We will gain infamy, in particular if colonies were previously recognised."
+  carlist_not_reasserted_claims: "Hasn't previously reasserted claims in the New World."
   carlist_removes_claims_in_americas: "Removes claims from the New World."
 
   carlist_wars_bring_scholars_button: "Invite Foreign Scholars"
@@ -147,6 +148,18 @@
   carlist_wars_recognise_new_spain_button_desc: "We will recognise the independence of New Spain, removing all our claims in their territory."
   carlist_wars_loses_new_spain_claims: "Loses all claims in New Spain."
 
+  carlist_wars_recognise_new_granada_button: "Recognise New Granada"
+  carlist_wars_recognise_new_granada_button_desc: "We will recognise the independence of New Granada, removing all our claims in their territory."
+  carlist_wars_loses_new_granada_claims: "Loses all claims in New Granada."
+
+  carlist_wars_recognise_peru_button: "Recognise Peru"
+  carlist_wars_recognise_peru_button_desc: "We will recognise the independence of Peru, removing all our claims in their territory."
+  carlist_wars_loses_peru_claims: "Loses all claims in Peru."
+
+  carlist_wars_recognise_la_plata_button: "Recognise La Plata"
+  carlist_wars_recognise_la_plata_button_desc: "We will recognise the independence of La Plata, removing all our claims in their territory."
+  carlist_wars_loses_la_plata_claims: "Loses all claims in La Plata."
+
 
   carlist_new_constitucion: "La Constitucion"
   carlist_moyano_law: "Ley Moyano"
@@ -169,17 +182,20 @@
   carlist_new_spain_old_claim_progress_bar_desc: "Claim Strength: #v [JournalEntry.GetCurrentBarProgress(ScriptedProgressBar.Self)|%]#!"
   carlist_new_spain_tenth_gdp_progress_bar: "New Spain has more than a tenth of our GDP"
 
-
   carlist_new_granada_old_claim_progress_bar_name:1 "Claim Strength in New Granada"
   carlist_new_granada_old_claim_progress_bar_desc: "Claim Strength: #v [JournalEntry.GetCurrentBarProgress(ScriptedProgressBar.Self)|%]#!"
+  carlist_new_granada_tenth_gdp_progress_bar: "New Granada has more than a tenth of our GDP"
 
   carlist_peru_old_claim_progress_bar_name:1 "Claim Strength in Peru"
   carlist_peru_old_claim_progress_bar_desc: "Claim Strength: #v [JournalEntry.GetCurrentBarProgress(ScriptedProgressBar.Self)|%]#!"
+  carlist_peru_tenth_gdp_progress_bar: "Peru has more than a tenth of our GDP"
 
   carlist_la_plata_old_claim_progress_bar_name:1 "Claim Strength in La Plata"
   carlist_la_plata_old_claim_progress_bar_desc: "Claim Strength: #v [JournalEntry.GetCurrentBarProgress(ScriptedProgressBar.Self)|%]#!"
+  carlist_la_plata_tenth_gdp_progress_bar: "La Plata has more than a tenth of our GDP"
 
   carlist_autocratic_monarchy: "Spain is an autocratic monarchy"
   carlist_non_autocratic_monarchy: "Spain is not an autocratic monarchy"
   carlist_gp_owns_old_claim: "A Great Power owns land from one of our colonies"
   carlist_spain_owns_old_claim: "We/our subjects own land of our colonies"
+  carlist_has_reasserted_claims: "We have reasserted our claims in the New World"
